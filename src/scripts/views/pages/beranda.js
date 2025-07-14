@@ -44,8 +44,11 @@ const Beranda = {
   },
 
 async afterRender() {
+  console.log('afterRender Beranda dipanggil');
+
   // ========== Faktatips ========== //
   const combinedContainer = document.querySelector('#combined-list');
+  combinedContainer.innerHTML = '';
 
   const { data: tipsData, error: tipsError } = await supabase
     .from('card_tips')
@@ -83,14 +86,21 @@ if (artikelError) {
 }
 
 artikelData.forEach((item) => {
+  // Cek apakah sudah ada artikel dengan judul yang sama
+  const existing = articleContainer.querySelector(`.article-card[data-id="${item.id}"]`);
+  if (existing) return; // Skip kalau sudah ada
+
   const card = document.createElement('div');
   card.classList.add('article-card');
+  card.setAttribute('data-id', item.id); // Simpan ID unik sebagai atribut
+
   card.innerHTML = `
     <img src="${item.gambar}" alt="${item.judul}" />
     ${item.judul ? `<h4>${item.judul}</h4>` : ''}
     <p>${item.isi}</p>
     ${item.url ? `<a href="${item.url}" target="_blank">Baca selengkapnya</a>` : ''}
   `;
+
   articleContainer.appendChild(card);
 });
 

@@ -1,3 +1,5 @@
+import { supabase } from '../../config/supabaseClient.js'
+
 const Beranda = {
   async render() {
     return `
@@ -28,16 +30,13 @@ const Beranda = {
         </div>
       </section>
 
-      <section class="facts-tips">
-        <div class="fact">
-          <h4>Mood Fact</h4>
-          <p>🍌 Tahukah Anda bahwa pisang dapat membantu meningkatkan suasana hati Anda? Pisang mengandung triptofan – zat kimia yang memberikan rasa senang yang juga ditemukan dalam cokelat!</p>
-        </div>
-        <div class="tips">
-          <h4>Tips</h4>
-          <p>🕯️ Menyalakan lilin aromaterapi bisa bantu redakan stres. Lavender, eucalyptus, dan peppermint dikenal bisa menenangkan pikiran dan tubuh. Ruangan juga jadi lebih nyaman dan tenang.</p>
-        </div>
-      </section>
+<section class="facts-tips">
+  <h3>💡 Fakta dan Tips</h3>
+  <div id="combined-list" class="card-list"></div>
+</section>
+
+
+
 
       <section class="articles">
         <h3>📰 Artikel</h3>
@@ -67,9 +66,32 @@ const Beranda = {
     `;
   },
 
-  async afterRender() {
-    // Tambahan efek, animasi, interaksi setelah render bisa di sini
+async afterRender() {
+  const combinedContainer = document.querySelector('#combined-list')
+
+  const { data, error } = await supabase
+    .from('card_tips')
+    .select('judul, konten')
+    .order('id', { ascending: true }) // urut berdasarkan ID agar selang-seling
+
+  if (data && data.length > 0) {
+    data.forEach((item) => {
+      const card = document.createElement('div')
+      card.classList.add('card', item.judul.toLowerCase().replace(/\s/g, '-')) // kelas = 'mood-fact' atau 'tips'
+      
+      // Tambahkan konten ke card
+      card.innerHTML = `
+        <strong>${item.judul}</strong>
+        <p>${item.konten}</p>
+      `
+
+      combinedContainer.appendChild(card)
+    })
+  } else {
+    console.error('Gagal memuat data dari Supabase:', error)
+    combinedContainer.innerHTML = '<p>Tidak ada data tersedia.</p>'
   }
+}
 };
 
 export default Beranda;

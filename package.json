@@ -27,6 +27,7 @@
     "webpack-dev-server": "^5.2.2"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.50.5",
     "regenerator-runtime": "^0.14.1"
   }
 }

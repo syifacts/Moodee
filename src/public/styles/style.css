@@ -168,30 +168,73 @@ img {
 }
 
 /* ==== Fakta dan Tips ==== */
-.facts-tips {
+.card-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
-  padding: 40px 20px;
-  justify-content: center;
+  gap: 100px;
+  margin-top: 20px;
+  margin-left: 270px;
+  width: 540px;
+  height: 306px;
+  flex-wrap: nowrap;
+  
 }
 
-.fact, .tips {
-  flex: 1 1 300px;
-  padding: 20px;
-  border-radius: 16px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+.card {
+  padding: 12px 16px;
+  border-radius: 12px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+   border-radius: 30px;
+    width: 540px;
+    height: 300px;
+}
+.card.mood-fact {
+  background-color: #FCEFF8; 
 }
 
-.fact {
-  background-color: #f4ecfa;
-  color: #5b3c88;
+.card.tips {
+  background-color: #BA84FE; 
+}
+.card.mood-fact p {
+  color: #222;
+}
+.card.tips p {
+  color: #fff;
+}
+.facts-tips h3 {
+  margin-left: 240px;
+  font-size: 30px;
+  margin-top: 60px;
+}
+.card p {
+  font-size: 20px;
+  line-height: 1.5;
+  width: 416px;
+  text-align: justify;
+  letter-spacing: 2px;
+  margin-left: 50px;
+  margin-right: 50px;
+  margin-top: 1px;
+}
+.card.mood-fact strong {
+  color: #483E87; /* Ungu untuk Mood Fact */
+    font-size: 40px;
+    font-weight: bold;;
+  display: block;
+    margin-left: 50px;
+  margin-right: 50px;
+  margin-top: 10px;
+}
+.card.tips strong {
+  color: #FFFFFF; /* Ungu untuk Mood Fact */
+    font-size: 40px;
+    font-weight: bold;;
+  display: block;
+    margin-left: 50px;
+  margin-right: 50px;
+  margin-top: 10px;
 }
 
-.tips {
-  background-color: #d9bfff;
-  color: #472e74;
-}
 
 /* ==== Artikel ==== */
 .articles {

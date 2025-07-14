@@ -35,62 +35,65 @@ const Beranda = {
   <div id="combined-list" class="card-list"></div>
 </section>
 
+     <section class="articles">
+  <h3>🗞️ Artikel</h3>
+  <div class="article-cards" id="article-container"></div>
+</section>
 
-
-
-      <section class="articles">
-        <h3>📰 Artikel</h3>
-        <div class="article-cards">
-          <div class="article-card">
-            <img src="/images/mood-bad.jpg" alt="Mood Bad" />
-            <p>Ada berbagai penyebab mood swing, biasanya kondisi tersebut dikaitkan dengan perubahan hormon dan faktor gaya hidup yang tidak sehat.</p>
-          </div>
-          <div class="article-card">
-            <img src="/images/mood-relax.jpg" alt="Mood Relax" />
-            <p>Beberapa faktor yang dapat menyebabkan mood swing meliputi perubahan hormonal, stres..</p>
-          </div>
-          <div class="article-card">
-            <img src="/images/makanan.jpg" alt="Makanan Mood" />
-            <h4>MAKANAN SEHAT UNTUK BAD MOOD</h4>
-            <p>Bad Mood menyebabkan kita menjadi sering marah, atau melepaskannya dengan mengonsumsi makanan yang tidak sehat...</p>
-            <a href="https://www.studiemakelasi.com/artikel-utama-sehat-bad-temukan/makanan-sehat-untuk-bad-mood" target="_blank">Baca selengkapnya</a>
-          </div>
-          <div class="article-card">
-            <img src="/images/musik.jpg" alt="Musik Mood" />
-            <h4>Apakah Musik di Mobil Bisa Mempengaruhi Mood saat Berkendara?</h4>
-            <p>Ternyata, musik di mobil bisa mempengaruhi mood dan keselamatan saat berkendara. Mengapa demikian?</p>
-            <a href="https://www.studiemakelasi.com/artikel/musik-mood-saat-berkendara" target="_blank">Baca selengkapnya</a>
-          </div>
-        </div>
-      </section>
     `;
   },
 
 async afterRender() {
-  const combinedContainer = document.querySelector('#combined-list')
+  // ========== Faktatips ========== //
+  const combinedContainer = document.querySelector('#combined-list');
 
-  const { data, error } = await supabase
+  const { data: tipsData, error: tipsError } = await supabase
     .from('card_tips')
     .select('judul, konten')
-    .order('id', { ascending: true }) // urut berdasarkan ID agar selang-seling
+    .order('id', { ascending: true });
 
-  if (data && data.length > 0) {
-    data.forEach((item) => {
-      const card = document.createElement('div')
-      card.classList.add('card', item.judul.toLowerCase().replace(/\s/g, '-')) // kelas = 'mood-fact' atau 'tips'
-      
-      // Tambahkan konten ke card
+  if (tipsData && tipsData.length > 0) {
+    tipsData.forEach((item) => {
+      const card = document.createElement('div');
+      card.classList.add('card', item.judul.toLowerCase().replace(/\s/g, '-'));
       card.innerHTML = `
         <strong>${item.judul}</strong>
         <p>${item.konten}</p>
-      `
-
-      combinedContainer.appendChild(card)
-    })
+      `;
+      combinedContainer.appendChild(card);
+    });
   } else {
-    console.error('Gagal memuat data dari Supabase:', error)
-    combinedContainer.innerHTML = '<p>Tidak ada data tersedia.</p>'
+    console.error('Gagal memuat data dari Supabase:', tipsError);
+    combinedContainer.innerHTML = '<p>Tidak ada data tersedia.</p>';
   }
+
+  // ========== Artikel ========== //
+const articleContainer = document.querySelector('#article-container');
+articleContainer.innerHTML = ''; // ✅ Bersihkan dulu sebelum isi ulang
+
+const { data: artikelData, error: artikelError } = await supabase
+  .from('artikel')
+  .select('*')
+  .order('id', { ascending: true }); // optional: urutkan biar konsisten
+
+if (artikelError) {
+  console.error('Gagal mengambil artikel:', artikelError);
+  articleContainer.innerHTML = '<p>Gagal memuat artikel.</p>';
+  return;
+}
+
+artikelData.forEach((item) => {
+  const card = document.createElement('div');
+  card.classList.add('article-card');
+  card.innerHTML = `
+    <img src="${item.gambar}" alt="${item.judul}" />
+    ${item.judul ? `<h4>${item.judul}</h4>` : ''}
+    <p>${item.isi}</p>
+    ${item.url ? `<a href="${item.url}" target="_blank">Baca selengkapnya</a>` : ''}
+  `;
+  articleContainer.appendChild(card);
+});
+
 }
 };
 

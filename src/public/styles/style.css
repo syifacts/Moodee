@@ -66,7 +66,7 @@ img {
 
 .hero-image {
   width: 100%;
-  height: auto;
+  height: 300px;
   display: block;
 }
 
@@ -168,30 +168,65 @@ img {
 }
 
 /* ==== Fakta dan Tips ==== */
+.facts-tips {
+  width: 100%;
+  overflow: hidden;
+}
+
+.facts-tips h3 {
+  margin-left: 240px;
+  font-size: 30px;
+  margin-top: 60px;
+}
+
 .card-list {
   display: flex;
-  flex-wrap: wrap;
-  gap: 100px;
+  gap: 50px;
   margin-top: 20px;
-  margin-left: 270px;
-  width: 540px;
-  height: 306px;
-  flex-wrap: nowrap;
+  margin-left: 100px;
+  margin-right: 100px;
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 20px;
+  scroll-behavior: smooth;
   
+  /* Styling untuk scrollbar */
+  scrollbar-width: thin;
+  scrollbar-color: #BA84FE #f1f1f1;
+}
+
+/* Webkit scrollbar styling untuk browser Chrome/Safari */
+.card-list::-webkit-scrollbar {
+  height: 8px;
+}
+
+.card-list::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.card-list::-webkit-scrollbar-thumb {
+  background: #BA84FE;
+  border-radius: 10px;
+}
+
+.card-list::-webkit-scrollbar-thumb:hover {
+  background: #9f6dfc;
 }
 
 .card {
   padding: 12px 16px;
-  border-radius: 12px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-   border-radius: 30px;
-    width: 540px;
-    height: 300px;
-      box-shadow:
+  border-radius: 30px;
+  min-width: 540px; /* Menggunakan min-width agar tidak menyusut */
+  width: 540px;
+  height: 300px;
+  flex-shrink: 0; /* Mencegah card menyusut */
+  box-shadow:
     0 4px 6px rgba(0, 0, 0, 0.1),
     0 8px 20px rgba(0, 0, 0, 0.08);
-
 }
+
 .card.mood-fact {
   background-color: #FCEFF8; 
 }
@@ -199,17 +234,15 @@ img {
 .card.tips {
   background-color: #BA84FE; 
 }
+
 .card.mood-fact p {
   color: #222;
 }
+
 .card.tips p {
   color: #fff;
 }
-.facts-tips h3 {
-  margin-left: 240px;
-  font-size: 30px;
-  margin-top: 60px;
-}
+
 .card p {
   font-size: 20px;
   line-height: 1.5;
@@ -220,80 +253,132 @@ img {
   margin-right: 50px;
   margin-top: 1px;
 }
+
 .card.mood-fact strong {
-  color: #483E87; /* Ungu untuk Mood Fact */
-    font-size: 40px;
-    font-weight: bold;;
+  color: #483E87;
+  font-size: 40px;
+  font-weight: bold;
   display: block;
-    margin-left: 50px;
+  margin-left: 50px;
   margin-right: 50px;
   margin-top: 10px;
 }
+
 .card.tips strong {
-  color: #FFFFFF; /* Ungu untuk Mood Fact */
-    font-size: 40px;
-    font-weight: bold;;
+  color: #FFFFFF;
+  font-size: 40px;
+  font-weight: bold;
   display: block;
-    margin-left: 50px;
+  margin-left: 50px;
   margin-right: 50px;
   margin-top: 10px;
 }
 
-
+/* Responsive untuk mobile */
+@media (max-width: 768px) {
+  .facts-tips h3 {
+    margin-left: 20px;
+    font-size: 24px;
+  }
+  
+  .card-list {
+    margin-left: 20px;
+    gap: 20px;
+  }
+  
+  .card {
+    min-width: 300px;
+    width: 300px;
+    height: 250px;
+  }
+  
+  .card p {
+    font-size: 16px;
+    width: 200px;
+    margin-left: 25px;
+    margin-right: 25px;
+  }
+  
+  .card strong {
+    font-size: 24px;
+    margin-left: 25px;
+    margin-right: 25px;
+  }
+}
 /* ==== Artikel ==== */
 .articles {
-  padding: 40px 20px;
-  background-color: #fff;
-  text-align: center;
+  padding: 40px 24px;
+  background-color: #f9f9fb;
 }
 
 .articles h3 {
-  font-size: 22px;
+  font-size: 30px;
   margin-bottom: 24px;
+  color: #000;
+  margin-left: 230px;
+  margin-top: 60px;
+  margin-bottom: 60px;
 }
 
 .article-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .article-card {
-  background-color: #fefefe;
+  background: #ffffff;
   border-radius: 12px;
-  padding: 16px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  text-align: left;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease;
+  margin-bottom: 200px;
+}
+
+.article-card:hover {
+  transform: translateY(-4px);
 }
 
 .article-card img {
-  border-radius: 8px;
-  margin-bottom: 12px;
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
 }
 
 .article-card h4 {
-  font-size: 16px;
-  font-weight: bold;
-  margin: 0 0 8px;
+  font-size: 18px;
+  margin: 16px;
+  margin-bottom: 0;
+  color: #1f5cbf;
 }
 
 .article-card p {
   font-size: 14px;
-  color: #333;
+  color: #555;
+  margin: 12px 16px;
+  flex-grow: 1;
 }
 
 .article-card a {
-  font-size: 14px;
-  color: #6c4ccf;
-  margin-top: 8px;
-  display: inline-block;
+  margin: 0 16px 16px;
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.article-card a:hover {
+  text-decoration: underline;
 }
 
 /* ==== Footer ==== */
 footer {
-  background: linear-gradient(to right, #9256e0, #d36ad6);
+  background: linear-gradient(to right, #433878 0%, #524289 23%, #513857 100%);
   color: #fff;
   text-align: center;
-  padding: 32px 20px;
+  padding: 150px 20px;
   font-size: 14px;
 }

@@ -1,0 +1,252 @@
+/* Reset dasar */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  color: #222;
+  background-color: #fff;
+  line-height: 1.6;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ==== App Bar ==== */
+.app-bar__nav {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background: linear-gradient(to right, #433878 0%, #524289 23%, #E4B1F0 100%);
+  padding: 20px 40px;
+  gap: 32px;
+  font-size: 24px;
+  height: 100px;
+}
+
+.app-bar__nav a {
+  color: #eee;
+  position: relative;
+  padding-bottom: 4px;
+  transition: all 0.3s ease;
+}
+
+.app-bar__nav a.active {
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.app-bar__nav a.active::after {
+  content: "";
+  display: block;
+  height: 3px;
+  width: 100%;
+  background: white;
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  border-radius: 2px;
+}
+
+/* ==== Hero Section ==== */
+.hero {
+  width: 100%;
+  overflow: hidden;
+}
+
+.hero-content {
+  width: 100%;
+}
+
+.hero-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+
+.hero-content h2 {
+  font-size: 40px;
+  margin-bottom: 10px;
+  text-align: center;
+  margin-top: 50px;
+}
+
+.hero-content p {
+  font-size: 25px;
+  color: #444;
+  margin-left: 100px;
+  margin-right: 100px;
+  margin-top: 50px;
+  letter-spacing: 3px;
+
+}
+
+/* ==== Statistik Bulanan ==== */
+.statistics {
+  padding: 40px 20px;
+  background-color: #fff;
+  margin-left: 100px;
+  margin-top: -50px;
+}
+
+.statistics h3 {
+  font-size: 30px;
+  color: #222;
+
+}
+.statistics p {
+  font-size: 30px;
+  letter-spacing: 3px;
+  text-align: justify;
+  margin-right: 100px;
+}
+
+.calendar-and-desc {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  margin-top: -60px;
+}
+
+
+@media (min-width: 768px) {
+  .calendar-and-desc {
+    flex-direction: row;
+    justify-content: center;
+    gap: 60px;
+    align-items: center;
+  }
+}
+
+/* ==== Journaling Section ==== */
+.journaling {
+  padding: 40px 20px;
+  margin-left: -400px;
+  background-color: #fdf7ff;
+}
+
+.journaling h3 {
+  font-size: 30px;
+  margin-bottom: 20px;
+  text-align: center;
+  margin-left: -1100px;
+}
+
+.journaling-content {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 200px;
+  align-items: center;
+  margin-top: -30px;
+}
+
+.journaling-content p {
+  max-width: 900px;
+
+}
+.journaling p {
+  font-size: 30px;
+  letter-spacing: 3px;
+  text-align: justify;
+  margin-left: 300px;
+  margin-right: 100px;
+}
+@media (min-width: 768px) {
+  .journaling-content {
+    flex-direction: row;
+    justify-content: center;
+    text-align: left;
+  }
+}
+
+/* ==== Fakta dan Tips ==== */
+.facts-tips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 40px 20px;
+  justify-content: center;
+}
+
+.fact, .tips {
+  flex: 1 1 300px;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.fact {
+  background-color: #f4ecfa;
+  color: #5b3c88;
+}
+
+.tips {
+  background-color: #d9bfff;
+  color: #472e74;
+}
+
+/* ==== Artikel ==== */
+.articles {
+  padding: 40px 20px;
+  background-color: #fff;
+  text-align: center;
+}
+
+.articles h3 {
+  font-size: 22px;
+  margin-bottom: 24px;
+}
+
+.article-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 24px;
+}
+
+.article-card {
+  background-color: #fefefe;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  text-align: left;
+}
+
+.article-card img {
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.article-card h4 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0 0 8px;
+}
+
+.article-card p {
+  font-size: 14px;
+  color: #333;
+}
+
+.article-card a {
+  font-size: 14px;
+  color: #6c4ccf;
+  margin-top: 8px;
+  display: inline-block;
+}
+
+/* ==== Footer ==== */
+footer {
+  background: linear-gradient(to right, #9256e0, #d36ad6);
+  color: #fff;
+  text-align: center;
+  padding: 32px 20px;
+  font-size: 14px;
+}

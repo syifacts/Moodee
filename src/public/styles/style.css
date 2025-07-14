@@ -187,6 +187,10 @@ img {
    border-radius: 30px;
     width: 540px;
     height: 300px;
+      box-shadow:
+    0 4px 6px rgba(0, 0, 0, 0.1),
+    0 8px 20px rgba(0, 0, 0, 0.08);
+
 }
 .card.mood-fact {
   background-color: #FCEFF8; 

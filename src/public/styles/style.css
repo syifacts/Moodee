@@ -455,3 +455,215 @@ footer {
   padding: 150px 20px;
   font-size: 14px;
 }
+
+/* ==== TRACKING ==== */
+
+.tracking-hero {
+  text-align: center;
+  padding: 2rem 1rem;
+  background: linear-gradient(to right, #a18cd1, #fbc2eb);
+}
+
+.tracking-hero-img {
+  max-width: 100%;
+  height: auto;
+}
+
+.tracking-quote {
+  font-style: italic;
+  margin-top: 1rem;
+  color: #333;
+}
+
+.tracking-form {
+  padding: 2rem;
+  text-align: center;
+}
+
+.mood-options {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.mood-btn {
+  background: white;
+  border: 2px solid #ccc;
+  border-radius: 12px;
+  padding: 10px 16px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.tracking-calendar {
+  padding: 2rem;
+  text-align: center;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+  margin-top: 1rem;
+}
+
+.calendar-day {
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.tracking-message {
+  margin: 3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.circle-message {
+  background: #6c5ce7;
+  color: white;
+  padding: 2rem;
+  border-radius: 50%;
+  max-width: 300px;
+  margin-bottom: 1rem;
+}
+/* ==== RESPONSIVE LAYOUT ==== */
+@media (max-width: 1024px) {
+  .app-bar__nav {
+    flex-direction: column;
+    height: auto;
+    padding: 20px;
+    gap: 16px;
+  }
+
+  .app-bar__nav a {
+    margin-right: 0;
+    font-size: 22px;
+  }
+
+  .logo {
+    margin-left: 0;
+    font-size: 28px;
+    text-align: center;
+  }
+
+  .logo img {
+    margin: 0 auto;
+    height: 100px;
+  }
+
+  .statistics,
+  .journaling,
+  .facts-tips,
+  .articles {
+    margin-left: 0;
+    margin-right: 0;
+    padding: 20px;
+  }
+
+  .statistics p,
+  .journaling p {
+    font-size: 18px;
+    margin: 0;
+    text-align: left;
+  }
+
+  .journaling h3 {
+    margin: 0 auto 20px;
+    font-size: 24px;
+  }
+
+  .journaling-content {
+    flex-direction: column-reverse;
+    gap: 40px;
+    align-items: center;
+  }
+
+  .scroll-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card-list {
+    flex-direction: row;
+    gap: 20px;
+  }
+
+  .card {
+    min-width: 280px;
+    width: 280px;
+    height: auto;
+  }
+
+  .card p {
+    font-size: 16px;
+    width: auto;
+    margin: 10px 20px;
+  }
+
+  .card strong {
+    font-size: 22px;
+    margin: 10px 20px;
+  }
+
+  .calendar-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .article-cards {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 0 10px;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-content h2,
+  .tracking-form h2 {
+    font-size: 28px;
+  }
+
+  .hero-content p,
+  .tracking-quote {
+    font-size: 18px;
+    margin: 0 20px;
+  }
+
+  .mood-options {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .mood-btn {
+    width: 80%;
+    font-size: 16px;
+  }
+
+  .calendar-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+
+  .tracking-message {
+    margin: 2rem 1rem;
+  }
+
+  .circle-message {
+    padding: 1.5rem;
+    max-width: 260px;
+  }
+
+  .article-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .footer {
+    padding: 60px 10px;
+    font-size: 12px;
+  }
+}

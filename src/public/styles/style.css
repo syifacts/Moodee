@@ -66,6 +66,10 @@ img {
   }
   .logo img {
     margin-left: -30px;
+    height: 120px;
+  }
+  .logo span {
+    margin-left: 30px;
   }
 /* ==== Hero Section ==== */
 .hero {

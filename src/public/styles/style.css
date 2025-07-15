@@ -26,8 +26,8 @@ img {
   background: linear-gradient(to right, #433878 0%, #524289 23%, #E4B1F0 100%);
   padding: 20px 40px;
   gap: 32px;
-  font-size: 24px;
-  height: 100px;
+  font-size: 28px;
+  height: 150px;
 }
 
 .app-bar__nav a {
@@ -35,6 +35,7 @@ img {
   position: relative;
   padding-bottom: 4px;
   transition: all 0.3s ease;
+  margin-right: 100px;
 }
 
 .app-bar__nav a.active {
@@ -53,7 +54,19 @@ img {
   left: 0;
   border-radius: 2px;
 }
-
+.logo {
+  margin-left: 50px;
+  font-size: 36px;
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+    font-weight: bold;
+    letter-spacing: 5px;
+    text-shadow: #222;
+    line-height: 120%;
+  }
+  .logo img {
+    margin-left: -30px;
+  }
 /* ==== Hero Section ==== */
 .hero {
   width: 100%;

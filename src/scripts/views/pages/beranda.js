@@ -5,7 +5,7 @@ const Beranda = {
     return `
       <section class="hero">
         <div class="hero-content">
-          <img src="icons/header_beranda.png" alt="Illustration" class="hero-image" />
+          <img src="icons/header2.gif" alt="Illustration" class="hero-image" />
           <div class="hero-text">
             <h2 id="rotating-quote">“ Tidak apa-apa merasa lelah — jangan lupa istirahat ”</h2>
             <p>Catat bagaimana perasaanmu setiap hari — senang, sedih, merasa buruk, marah, atau biasa saja. Kamu bisa pilih mood yang paling menggambarkan harimu.</p>

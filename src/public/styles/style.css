@@ -66,9 +66,11 @@ img {
 
 .hero-image {
   width: 100%;
-  height: 300px;
+  max-height: 350px; /* Ubah sesuai selera agar tidak terlalu besar */
+  object-fit: cover; /* Biar gambar tetap proporsional */
   display: block;
 }
+
 
 
 .hero-content h2 {

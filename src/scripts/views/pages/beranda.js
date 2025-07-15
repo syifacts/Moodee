@@ -32,8 +32,20 @@ const Beranda = {
 
 <section class="facts-tips">
   <h3>💡 Fakta dan Tips</h3>
-  <div id="combined-list" class="card-list"></div>
+
+  <div class="scroll-wrapper">
+    <button id="scroll-left" aria-label="Scroll Left" class="scroll-button left">
+      <i class="fas fa-chevron-left"></i>
+    </button>
+
+    <div id="combined-list" class="card-list"></div>
+
+    <button id="scroll-right" aria-label="Scroll Right" class="scroll-button right">
+      <i class="fas fa-chevron-right"></i>
+    </button>
+  </div>
 </section>
+
 
      <section class="articles">
   <h3>🗞️ Artikel</h3>
@@ -69,6 +81,42 @@ async afterRender() {
     console.error('Gagal memuat data dari Supabase:', tipsError);
     combinedContainer.innerHTML = '<p>Tidak ada data tersedia.</p>';
   }
+  // Geser kiri-kanan
+const scrollLeftBtn = document.getElementById('scroll-left');
+const scrollRightBtn = document.getElementById('scroll-right');
+const card = document.querySelector('.card');
+const cardWidth = card?.offsetWidth || 590;
+const cardGap = 50;
+const scrollAmount = cardWidth + cardGap;
+
+
+scrollLeftBtn.addEventListener('click', () => {
+  const currentScrollLeft = combinedContainer.scrollLeft;
+
+  // Jika sudah di paling kiri (dengan toleransi)
+  if (currentScrollLeft <= 5) {
+    const maxScrollLeft = combinedContainer.scrollWidth - combinedContainer.clientWidth;
+    combinedContainer.scrollTo({ left: maxScrollLeft, behavior: 'smooth' });
+  } else {
+    combinedContainer.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+  }
+});
+
+scrollRightBtn.addEventListener('click', () => {
+  const maxScrollLeft = combinedContainer.scrollWidth - combinedContainer.clientWidth;
+  const currentScrollLeft = combinedContainer.scrollLeft;
+
+  // Periksa apakah sudah benar-benar mentok kanan (pakai toleransi lebih besar)
+  if (currentScrollLeft >= maxScrollLeft - 5) {
+    // Balik ke awal
+    combinedContainer.scrollTo({ left: 0, behavior: 'smooth' });
+  } else {
+    // Masih bisa geser kanan
+    combinedContainer.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+  }
+});
+
+
 
   // ========== Artikel ========== //
 const articleContainer = document.querySelector('#article-container');

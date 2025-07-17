@@ -3,11 +3,12 @@ const Tracking = {
   async render() {
     return `
       <section class="tracking-hero">
-        <img src="icons/header2.gif" alt="Illustration" class="tracking-hero-img" />
+        <img src="icons/pic4.jpg" alt="Illustration" class="hero-image" />
         <p class="tracking-quote">❝ Mengetahui kapan kamu paling bahagia atau paling lelah adalah awal dari mencintai diri sendiri ❞</p>
       </section>
 
       <section class="tracking-form">
+          <img src="/icons/pic10.png" alt="Mood Calendar" />
         <h2>Bagaimana Perasaanmu Saat Ini?</h2>
         <p>Pilih suasana hati sesuai dengan perasaanmu saat ini</p>
         <div class="mood-options">

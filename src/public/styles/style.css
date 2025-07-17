@@ -61,7 +61,6 @@ img {
     color: #fff;
     font-weight: bold;
     letter-spacing: 5px;
-    text-shadow: #222;
     line-height: 120%;
   }
   .logo img {
@@ -70,6 +69,8 @@ img {
   }
   .logo span {
     margin-left: 30px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 10, 4 );
+
   }
 /* ==== Hero Section ==== */
 .hero {
@@ -95,6 +96,7 @@ img {
   margin-bottom: 10px;
   text-align: center;
   margin-top: 50px;
+  font-style: italic;
 }
 .hero-text h2 {
   transition: opacity 0.5s ease-in-out;
@@ -458,11 +460,6 @@ footer {
 
 /* ==== TRACKING ==== */
 
-.tracking-hero {
-  text-align: center;
-  padding: 2rem 1rem;
-  background: linear-gradient(to right, #a18cd1, #fbc2eb);
-}
 
 .tracking-hero-img {
   max-width: 100%;
@@ -471,20 +468,46 @@ footer {
 
 .tracking-quote {
   font-style: italic;
-  margin-top: 1rem;
-  color: #333;
+  font-size: 30px;
+  margin-bottom: 10px;
+  text-align: center;
+  font-weight: bold;
+  margin-top: 80px;
+  font-style: italic;
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
 }
 
 .tracking-form {
   padding: 2rem;
   text-align: center;
+
+}
+.tracking-form h2 {
+  font-size: 30px;
+  margin-top: -250px;
+  margin-left: 550px;
+    display: flex; 
+}
+.tracking-form p {
+  font-size: 21px;
+  display: flex;
+  margin-left: 550px;
+  letter-spacing: 3px;
 }
 
+.tracking-form img {
+  width: 365px;
+  height: 280px;
+  margin-left: 100px;
+  margin-top: 60px;
+    display: flex;
+}
 .mood-options {
-  display: flex;
+    
   justify-content: center;
   gap: 1rem;
-  margin-top: 1rem;
+  margin-top: 100px;
   flex-wrap: wrap;
 }
 

@@ -842,3 +842,209 @@ footer {
     font-size: 12px;
   }
 }
+
+.account-stats {
+  display: flex;
+  justify-content: space-around;
+  margin: 2rem;
+}
+
+.stat-box {
+  background: #fbeaff;
+  padding: 1rem 2rem;
+  border-radius: 16px;
+  box-shadow: 0 3px 5px rgba(0,0,0,0.1);
+}
+
+.account-info {
+  background: white;
+  margin: 2rem;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.info-card {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: #e57373;
+}
+
+.info-fields input {
+  display: block;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  width: 250px;
+  background: #ffe7f6;
+}
+
+.mood-history {
+  text-align: center;
+  margin: 2rem;
+}
+
+.mood-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.mood-item {
+  background: #fbeaff;
+  padding: 1rem;
+  border-radius: 10px;
+  width: 150px;
+  margin: 0 auto;
+}
+
+/* LOGIN */
+.login-page {
+  position: relative;
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #5e3c9d, #ccacd8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  overflow: hidden;
+  gap: 40px;
+}
+
+
+/* Login Card */
+.login-card {
+  background: #fceeff;
+  padding: 3rem;
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  max-width: 560px;
+  width: 100%;
+  z-index: 2;
+}
+
+.login-card h2 {
+  font-size: 2.2rem;
+  font-weight:bolder;
+  color: #483E87;
+  margin-bottom: 0.5rem;
+  margin-left: 50px;
+  
+}
+
+.login-card p {
+  color: #939196;
+  font-size: 0.95rem;
+  margin-left: 55px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.login-form label {
+  margin-top: 2rem;
+  font-weight: 600;
+  color: #483E87;
+  margin-bottom: 5px;
+  font-size: 20px;
+  margin-left: 1rem;
+}
+
+.login-form input {
+  padding: 10px 15px;
+  margin-top: 5px;
+  border-radius: 15px;
+  border: none;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  font-size: 1rem;
+}
+
+.login-form button {
+  margin-top: 2rem;
+  background-color: #5e3c9d;
+  color: #fff;
+  border: none;
+  padding: 12px;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-form button:hover {
+  background-color: #452e73;
+}
+
+.login-message {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+.signup-link {
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.signup-link a {
+  margin-left: 5px;
+  color: #5e3c9d;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* Left Illustration */
+.left-illustration {
+  position: absolute;
+  left: 45%;
+  transform: translateX(-140%) translateY(-10%);
+  top: 37%;
+  max-height: 60%;
+  z-index: 3; /* lebih tinggi dari login-card */
+  pointer-events: none; /* supaya tidak mengganggu interaksi form */
+}
+.left-illustration img {
+  max-height: 200px;
+  width: auto;
+}
+
+/* Right Emoji Illustration */
+.right-background {
+  position: absolute;
+  right: 2%;
+  bottom: 0;
+  max-height: 30%;
+  z-index: 1;
+  opacity: 0.9;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .login-page {
+    flex-direction: column;
+    justify-content: center;
+    padding: 2rem;
+  }
+
+  .left-illustration,
+  .right-background {
+    display: none;
+  }
+
+  .login-card {
+    margin-top: 2rem;
+  }
+}

@@ -12,6 +12,14 @@ class App {
     window.addEventListener('load', () => this.renderPage());
   }
 
+  _isLoggedIn() {
+    return localStorage.getItem('user') !== null;
+  }
+
+  _redirectToLogin() {
+    window.location.hash = '/login'; // ✅ gunakan hash, bukan href
+  }
+
   _updateNavigation(currentUrl = '') {
     const navLinks = document.querySelectorAll('.app-bar__nav a');
     navLinks.forEach((link) => {
@@ -27,6 +35,13 @@ class App {
   async renderPage() {
     const url = UrlParser.parseActiveUrlWithCombiner();
     const page = routes[url] || routes['/404'];
+
+    const protectedRoutes = ['/account', '/tracking', '/journaling'];
+    if (protectedRoutes.includes(url) && !this._isLoggedIn()) {
+      this._redirectToLogin();
+      return;
+    }
+
     this._content.innerHTML = await page.render();
     await page.afterRender();
 

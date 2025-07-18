@@ -1048,3 +1048,19 @@ footer {
     margin-top: 2rem;
   }
 }
+
+.logout-button {
+  margin: 24px auto;
+  display: block;
+  background-color: #f35;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.logout-button:hover {
+  background-color: #d22;
+}

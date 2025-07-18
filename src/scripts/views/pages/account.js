@@ -2,11 +2,8 @@ const Account = {
   async render() {
     const rawUser = localStorage.getItem('user');
     if (!rawUser) {
-      return `
-        <section class="unauthorized">
-          <p>Ups! Kamu belum login.</p>
-        </section>
-      `;
+      window.location.hash = '/login';
+      return '';
     }
 
     const user = JSON.parse(rawUser);
@@ -43,22 +40,34 @@ const Account = {
         </div>
       </section>
 
-      <section class="mood-history">
-        <h3>Riwayat Mood</h3>
-        <div class="mood-list">
-          ${user.moodHistory.map(item => `
-            <div class="mood-item">
-              <strong>${item.mood}</strong>
-              <span>${item.time}</span>
-            </div>
-          `).join('')}
+    <section class="mood-history">
+  <h3>Riwayat Mood</h3>
+  <div class="mood-list">
+    ${Array.isArray(user.moodHistory) && user.moodHistory.length > 0
+      ? user.moodHistory.map(item => `
+        <div class="mood-item">
+          <strong>${item.mood}</strong>
+          <span>${item.time}</span>
         </div>
+      `).join('')
+      : '<p>Belum ada riwayat mood.</p>'}
+  </div>
+</section>
+
+      <section class="logout-section">
+        <button id="logout-btn" class="logout-button">Logout</button>
       </section>
     `;
   },
 
   async afterRender() {
-    // Post render logic here if needed
+    const logoutBtn = document.querySelector('#logout-btn');
+    if (logoutBtn) {
+      logoutBtn.addEventListener('click', () => {
+        localStorage.removeItem('user');
+        window.location.hash = '/login';
+      });
+    }
   },
 };
 

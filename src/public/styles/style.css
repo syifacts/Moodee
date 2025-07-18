@@ -870,12 +870,7 @@ footer {
   align-items: center;
 }
 
-.avatar {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  background: #e57373;
-}
+
 
 .info-fields input {
   display: block;

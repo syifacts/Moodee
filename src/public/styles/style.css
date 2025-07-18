@@ -556,7 +556,34 @@ footer {
   max-width: 300px;
   margin-bottom: 1rem;
 }
+.mood-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px; /* jarak antar tombol */
+  margin-top: -50px;
+}
 
+.img-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.2s ease;
+}
+
+.img-button:hover {
+  transform: scale(1.1);
+}
+
+.img-button img {
+  width: 100px;
+  height: auto;
+  display: block;
+}
+
+
+/* JOURNALING */
 .sectionjourn {
   display: flex;
   justify-content: center;

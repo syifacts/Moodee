@@ -1,4 +1,3 @@
-// src/scripts/views/tracking.js
 const Tracking = {
   async render() {
     return `
@@ -11,13 +10,15 @@ const Tracking = {
           <img src="/icons/pic10.png" alt="Mood Calendar" />
         <h2>Bagaimana Perasaanmu Saat Ini?</h2>
         <p>Pilih suasana hati sesuai dengan perasaanmu saat ini</p>
-        <div class="mood-options">
-          <button class="mood-btn" data-mood="Happy">😊 Happy</button>
-          <button class="mood-btn" data-mood="Good">🙂 Good</button>
-          <button class="mood-btn" data-mood="Bad">😐 Bad</button>
-          <button class="mood-btn" data-mood="Sad">😢 Sad</button>
-          <button class="mood-btn" data-mood="Angry">😠 Angry</button>
-        </div>
+        <div class="mood-buttons">
+  <button class="img-button"><img src="icons/happy.png" alt="Happy" /></button>
+  <button class="img-button"><img src="icons/good.png" alt="Good" /></button>
+  <button class="img-button"><img src="icons/bad.png" alt="Bad" /></button>
+  <button class="img-button"><img src="icons/sad.png" alt="Sad" /></button>
+  <button class="img-button"><img src="icons/angry.png" alt="Angry" /></button>
+</div>
+
+
       </section>
 
       <section class="tracking-calendar">

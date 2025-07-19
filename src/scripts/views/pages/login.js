@@ -44,11 +44,12 @@ const Login = {
       const password = form.querySelector('#password').value.trim();
 
       const { data, error } = await supabase
-        .from('user')
-        .select('*')
-        .eq('username', username)
-        .eq('password', password)
-        .single();
+  .from('data_pengguna') 
+  .select('*')
+  .eq('username', username)
+  .eq('password', password)
+  .single();
+
 
       if (error || !data) {
         messageElement.textContent = 'Username atau kata sandi salah';

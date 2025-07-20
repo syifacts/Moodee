@@ -1,5 +1,6 @@
 import { supabase } from '../../config/supabaseClient.js';
 
+
 const Tracking = {
   async render() {
     return `
@@ -24,15 +25,15 @@ const Tracking = {
         </div>
       </section>
 
-      <section class="tracking-calendar">
-        <h3>July 2025</h3>
-        <div class="calendar-grid">
-          ${Array.from({ length: 31 }, (_, i) => `
-            <div class="calendar-day" data-day="${i + 1}">
-              ${i + 1}
-            </div>`).join('')}
-        </div>
-      </section>
+   <section class="tracking-calendar">
+  <h3>
+    <button class="calendar-nav-btn" id="prev-month">&#8249;</button>
+    <span id="month-year-title">July 2025</span>
+    <button class="calendar-nav-btn" id="next-month">&#8250;</button>
+  </h3>
+  <div class="calendar-grid" id="calendar-grid"></div>
+</section>
+
 
       <section class="tracking-message">
         <div class="circle-message">
@@ -59,6 +60,14 @@ const Tracking = {
     }
 
     const today = new Date();
+    let currentMonth = today.getMonth(); // 0-indexed
+let currentYear = today.getFullYear();
+
+const monthNames = [
+  'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
+  'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
+];
+
     const currentDate = today.toISOString().split('T')[0]; // YYYY-MM-DD
     const currentTime = today.toTimeString().split(' ')[0].slice(0, 5); // HH:MM
 
@@ -85,21 +94,27 @@ const Tracking = {
     }
 
     function getMoodColor(mood) {
-      switch (mood) {
-        case 'Happy': return '#00b894';
-        case 'Good': return '#fdcb6e';
-        case 'Bad': return '#0984e3';
-        case 'Sad': return '#a29bfe';
-        case 'Angry': return '#d63031';
-        default: return '#dfe6e9';
-      }
-    }
+  const colors = {
+    Happy: '#fce38a',
+    Good: '#95e1d3',
+    Bad: '#f38181',
+    Sad: '#a29bfe',
+    Angry: '#ff7675',
+    Neutral: '#dfe6e9'
+    // tambahkan warna lain jika perlu
+  };
+  return colors[mood] || '#dcdde1'; // default gray
+}
 
     function getDominantMood(moods) {
-      const freq = {};
-      moods.forEach(m => freq[m] = (freq[m] || 0) + 1);
-      return Object.entries(freq).sort((a, b) => b[1] - a[1])[0][0];
-    }
+  const count = {};
+  moods.forEach(entry => {
+    const mood = entry.mood;
+    count[mood] = (count[mood] || 0) + 1;
+  });
+  return Object.entries(count).sort((a, b) => b[1] - a[1])[0][0];
+}
+
 
     function showPopup(message) {
       const popup = document.getElementById('popup-toast');
@@ -154,24 +169,55 @@ const Tracking = {
     });
 
     // Load data mood untuk kalender
-    async function loadCalendarMood() {
-      const { data, error } = await supabase
-        .from('mood')
-        .select('*')
-        .eq('user_id', user.id);
+async function loadCalendarMood() {
+  const today = new Date();
+  const currentDate = today.toISOString().split('T')[0];
 
-      if (error) {
-        console.error('Gagal memuat data mood:', error.message);
-        return;
+  try {
+    const { data: moodsData, error } = await supabase
+      .from('mood')
+      .select('*')
+      .eq('user_id', user.id);
+
+    if (error) throw error;
+
+    const moodByDate = {};
+
+    moodsData.forEach(entry => {
+      const entryDate = new Date(entry.date);
+      const day = entryDate.getDate();
+      if (!moodByDate[day]) moodByDate[day] = [];
+      moodByDate[day].push(entry);
+    });
+
+    // Auto-mood untuk besok jika belum ada
+    const tomorrow = new Date(today);
+    tomorrow.setDate(today.getDate() + 1);
+    const tomorrowDate = tomorrow.toISOString().split('T')[0];
+
+    const hasTomorrowMood = moodsData.some(
+      entry => entry.date === tomorrowDate
+    );
+
+    if (!hasTomorrowMood) {
+      const todayMoods = moodByDate[today.getDate()];
+      if (todayMoods && todayMoods.length > 0) {
+        const topMood = getDominantMood(todayMoods);
+        await supabase.from('mood').insert({
+          user_id: user.id,
+          date: tomorrowDate,
+          time: 'Auto',
+          mood: topMood
+        });
       }
+    }
 
-      const moodByDate = {};
-      data.forEach(entry => {
-        const day = new Date(entry.date).getDate();
-        if (!moodByDate[day]) moodByDate[day] = [];
-        moodByDate[day].push(entry.mood);
-      });
+    // Render ulang kalender
+    renderCalendarGrid(currentYear, currentMonth);
 
+    // Tunggu render selesai sebelum warnai
+    setTimeout(() => {
+      const calendarDays = document.querySelectorAll('.calendar-day');
       calendarDays.forEach(day => {
         const dayNum = parseInt(day.dataset.day);
         const moods = moodByDate[dayNum];
@@ -181,31 +227,47 @@ const Tracking = {
           day.title = `Mayoritas mood: ${dominantMood}`;
         }
       });
+    }, 0);
 
-      // Auto-mood untuk besok
-      const todayMoods = data.filter(entry => entry.date === currentDate);
-      if (todayMoods.length > 0) {
-        const moodFreq = {};
-        todayMoods.forEach(m => {
-          moodFreq[m.mood] = (moodFreq[m.mood] || 0) + 1;
-        });
-
-        const topMood = Object.entries(moodFreq).sort((a, b) => b[1] - a[1])[0][0];
-        const tomorrow = new Date(today);
-        tomorrow.setDate(today.getDate() + 1);
-        const tomorrowDate = tomorrow.toISOString().split('T')[0];
-
-        const existing = data.find(entry => entry.date === tomorrowDate && entry.user_id === user.id);
-        if (!existing) {
-          await supabase.from('mood').insert({
-            user_id: user.id,
-            date: tomorrowDate,
-            time: 'Auto',
-            mood: topMood
-          });
-        }
-      }
+  } catch (error) {
+    console.error('Gagal memuat data mood:', error.message);
+  }
     }
+    function renderCalendarGrid(year, month) {
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+  const grid = document.getElementById('calendar-grid');
+  grid.innerHTML = '';
+
+  for (let i = 1; i <= daysInMonth; i++) {
+    const dayDiv = document.createElement('div');
+    dayDiv.classList.add('calendar-day');
+    dayDiv.dataset.day = i;
+    dayDiv.textContent = i;
+    grid.appendChild(dayDiv);
+  }
+
+  document.getElementById('month-year-title').textContent = `${monthNames[month]} ${year}`;
+}
+document.getElementById('prev-month').addEventListener('click', () => {
+  currentMonth--;
+  if (currentMonth < 0) {
+    currentMonth = 11;
+    currentYear--;
+  }
+  renderCalendarGrid(currentYear, currentMonth);
+  loadCalendarMood(); // reload mood data untuk bulan tsb
+});
+
+document.getElementById('next-month').addEventListener('click', () => {
+  currentMonth++;
+  if (currentMonth > 11) {
+    currentMonth = 0;
+    currentYear++;
+  }
+  renderCalendarGrid(currentYear, currentMonth);
+  loadCalendarMood(); // reload mood data untuk bulan tsb
+});
+
 
     // Tampilkan mood terakhir dari localStorage jika ada
     const storedLastMood = localStorage.getItem(getUserKey('lastMood'));
@@ -215,6 +277,8 @@ const Tracking = {
 
     // Load data kalender saat halaman selesai render
     loadCalendarMood();
+    renderCalendarGrid(currentYear, currentMonth);
+
   }
 };
 

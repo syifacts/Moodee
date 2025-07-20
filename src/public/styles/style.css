@@ -120,6 +120,12 @@ img {
   gap: 24px;
   margin-top: -60px;
 }
+.calendar-day span {
+  font-size: 1.2rem;
+  display: block;
+  margin-top: 4px;
+}
+
 /* ==== Statistik Bulanan ==== */
 .statistics {
   padding: 40px 20px;
@@ -593,21 +599,51 @@ footer {
 }
 
 .tracking-message {
-  margin: 3rem 2rem;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  text-align: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 2rem;
+  flex-wrap: wrap; /* agar responsif saat layar kecil */
+  margin-bottom: 100px;
 }
 
 .circle-message {
-  background: #6c5ce7;
+  background: #483E87;
   color: white;
   padding: 2rem;
   border-radius: 50%;
-  max-width: 300px;
-  margin-bottom: 1rem;
+  width: 250px;
+  height: 225px;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Bisa juga left, tapi center lebih seimbang */
+  text-align: center;
+  flex-shrink: 0;
+  margin: 70px 0 0 150px; /* Atas 70px, kiri-kanan bawah 0 */
 }
+
+.circle-message p {
+  font-size: 1.4rem;
+}
+
+.message-text {
+  flex: 1;
+  min-width: 100px;
+  max-width: 800px;
+  font-size: 1.7rem;
+  letter-spacing: 3px;
+  text-align: justify;
+}
+
+.message-image img {
+  width: 350px;
+  height: auto;
+  object-fit: contain;
+  flex-shrink: 0;
+  margin-right: 200px;
+}
+
 .mood-buttons {
   display: flex;
   justify-content: center;

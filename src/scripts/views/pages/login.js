@@ -58,6 +58,7 @@ const Login = {
       }
 
       localStorage.setItem('user', JSON.stringify(data));
+      localStorage.setItem('lastActivity', new Date().getTime());
 
       messageElement.textContent = 'Login berhasil! Mengalihkan...';
       messageElement.style.color = 'green';

@@ -1,6 +1,24 @@
 import UrlParser from '../routes/url-parser';
 import routes from '../routes/routes';
 
+function checkSessionTimeout() {
+  const lastActivity = parseInt(localStorage.getItem('lastActivity'), 10);
+  const now = new Date().getTime();
+  const sessionDuration = 15 * 60 * 1000; // 15 menit
+
+  if (!lastActivity || now - lastActivity > sessionDuration) {
+    localStorage.removeItem('user');
+    localStorage.removeItem('lastActivity');
+    alert('Sesi Anda telah habis. Silakan login kembali.');
+    window.location.hash = '/login';
+  }
+}
+
+function resetSessionTimer() {
+  localStorage.setItem('lastActivity', new Date().getTime());
+}
+
+
 class App {
   constructor({ content }) {
     this._content = content;
@@ -44,6 +62,18 @@ class App {
 
     this._content.innerHTML = await page.render();
     await page.afterRender();
+    checkSessionTimeout();
+
+// Perbarui waktu jika ada aktivitas
+window.addEventListener('mousemove', resetSessionTimer);
+window.addEventListener('keydown', resetSessionTimer);
+window.addEventListener('click', resetSessionTimer);
+
+// Cek session setiap 1 menit
+if (!this._sessionInterval) {
+  this._sessionInterval = setInterval(checkSessionTimeout, 60 * 1000);
+}
+
 
     this._updateNavigation(url);
   }

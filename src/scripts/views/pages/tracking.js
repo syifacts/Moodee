@@ -1,5 +1,23 @@
 import { supabase } from '../../config/supabaseClient.js';
 import Chart from 'chart.js/auto';
+function getDominantMood(moods) {
+  const count = {};
+  moods.forEach(entry => {
+    const mood = entry.mood;
+    if (typeof mood === 'string') {
+      count[mood] = (count[mood] || 0) + 1;
+    } else if (mood.mixed && Array.isArray(mood.mixed)) {
+      mood.mixed.forEach(m => {
+        count[m] = (count[m] || 0) + 1;
+      });
+    }
+  });
+  const sorted = Object.entries(count).sort((a, b) => b[1] - a[1]);
+  if (sorted.length === 0) return 'Neutral';
+  const maxCount = sorted[0][1];
+  const topMoods = sorted.filter(([_, count]) => count === maxCount).map(([mood]) => mood);
+  return topMoods.length === 1 ? topMoods[0] : { mixed: topMoods };
+}
 
 const Tracking = {
   async render() {

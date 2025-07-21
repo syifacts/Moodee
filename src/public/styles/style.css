@@ -1072,64 +1072,189 @@ footer {
   }
 }
 
+.account-hero {
+  background: #483E87;
+  stroke: #000;
+  padding: 2rem;
+  color: white;
+  border-radius: 2rem;
+  margin: 2rem auto;
+  max-width: 900px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  outline: 2px solid rgba(0, 0, 0, 0.3);
+}
+
+.hero-box{
+  display: flex;
+}
+.hero-box h2 {
+  font-size: 2.5rem;
+  margin-top: -5px;
+  margin-left: 50px;
+  color: #FCEFF8;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.hero-box p {
+  margin: 0;
+  font-weight: 300;
+  margin-top: -20px;
+  margin-left: 50px;
+  font-size: 1.1rem;
+}
+
+.hero-img {
+  width: 128px;
+  height: 128px;
+  display: flex;
+  margin-left: 400px;
+}
+
 .account-stats {
   display: flex;
-  justify-content: space-around;
-  margin: 2rem;
+  gap: 2rem;
+  justify-content: center;
+  margin: 2rem auto;
+  max-width: 900px;
+  
 }
 
 .stat-box {
-  background: #fbeaff;
-  padding: 1rem 2rem;
-  border-radius: 16px;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.1);
+  background: #FCEFF8;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  text-align: center;
+  font-size: 1.1rem;
+  width: 250px;
+  outline: 2px solid rgba(0, 0, 0, 0.3);
+  color: #483E87;
+ 
+}
+.stat-box strong {
+  font-size: 2rem;
+  color: #483E87;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 }
 
 .account-info {
-  background: white;
-  margin: 2rem;
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+  max-width: 900px;
+  margin: 2rem auto;
   padding: 2rem;
-  border-radius: 16px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.account-info h3 {
+  color: #5b2b89;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .info-card {
   display: flex;
-  gap: 2rem;
   align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
+.avatar-account {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: #fdd2ef;
+  padding: 0.5rem;
+}
 
+.info-fields {
+  flex: 1;
+  min-width: 250px;
+  text-align: left;
+}
+
+.info-fields label {
+  display: block;
+  font-weight: 600;
+  margin: 0.5rem 0 0.25rem;
+  color: #5b2b89;
+}
 
 .info-fields input {
-  display: block;
-  margin-bottom: 1rem;
+  width: 100%;
   padding: 0.5rem;
+  border-radius: 0.75rem;
   border: 1px solid #ccc;
-  border-radius: 8px;
-  width: 250px;
-  background: #ffe7f6;
+  background-color: #fdeaff;
+  margin-bottom: 0.5rem;
+}
+
+.info-fields a {
+  display: inline-block;
+  color: #845EC2;
+  font-weight: bold;
+  margin-top: 0.5rem;
+  text-decoration: none;
 }
 
 .mood-history {
+  max-width: 700px;
+  margin: 2rem auto;
+  text-align: center;
+}
+
+.mood-history h3 {
+  font-size: 1.8rem;
+  background-color: #845EC2;
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border-radius: 1rem;
+  display: inline-block;
+}
+
+.mood-list {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.mood-item {
+  background: #fceeff;
+  padding: 0.8rem 1.2rem;
+  border-radius: 1rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  display: flex;
+  justify-content: space-between;
+  font-weight: 500;
+  color: #4a2e73;
+}
+
+.logout-section {
   text-align: center;
   margin: 2rem;
 }
 
-.mood-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  margin-top: 1rem;
+.logout-button {
+  background-color: #845EC2;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.mood-item {
-  background: #fbeaff;
-  padding: 1rem;
-  border-radius: 10px;
-  width: 150px;
-  margin: 0 auto;
+.logout-button:hover {
+  background-color: #6c45a9;
 }
+
 
 /* LOGIN */
 .login-page {

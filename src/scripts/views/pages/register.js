@@ -6,7 +6,7 @@ const Register = {
       <section class="register-section">
         <h2>Daftar Akun Baru</h2>
         <form id="register-form">
-          <label for="name">Nama Lengkap</label>
+          <label for="name">Nama</label>
           <input type="text" id="name" required>
 
           <label for="username">Username</label>

@@ -35,6 +35,15 @@ const Tracking = {
           <span id="month-year-title">July 2025</span>
           <button class="calendar-nav-btn" id="next-month">&#8250;</button>
         </h3>
+          <div class="calendar-weekdays">
+    <div>Sen</div>
+    <div>Sel</div>
+    <div>Rab</div>
+    <div>Kam</div>
+    <div>Jum</div>
+    <div>Sab</div>
+    <div>Min</div>
+  </div>
         <div class="calendar-grid" id="calendar-grid"></div>
       </section>
 
@@ -254,38 +263,68 @@ const Tracking = {
       }
     }
 
-    function renderCalendarGrid(year, month, moodByDate) {
-      const daysInMonth = new Date(year, month + 1, 0).getDate();
-      const grid = document.getElementById('calendar-grid');
-      grid.innerHTML = '';
+   function renderCalendarGrid(year, month, moodByDate) {
+  const grid = document.getElementById('calendar-grid');
+  grid.innerHTML = '';
 
-      const moodIcons = {
-        Happy: '😊', Good: '🙂', Neutral: '😐', Bad: '😞', Angry: '😠', Sad: '😢'
-      };
+  const today = new Date();
+  const firstDay = new Date(year, month, 1);
+  const lastDay = new Date(year, month + 1, 0);
+  const startDay = firstDay.getDay(); // 0 (Minggu) - 6 (Sabtu)
+  const daysInMonth = lastDay.getDate();
 
-      for (let i = 1; i <= daysInMonth; i++) {
-        const dayDiv = document.createElement('div');
-        dayDiv.classList.add('calendar-day');
-        dayDiv.dataset.day = i;
-        const moods = moodByDate?.[i];
-        if (moods && moods.length > 0) {
-          const dominantMood = getDominantMood(moods);
-          dayDiv.style.backgroundColor = getMoodColor(dominantMood);
-          if (typeof dominantMood === 'string') {
-            dayDiv.innerHTML = `${i}<br><span>${moodIcons[dominantMood] || ''}</span>`;
-            dayDiv.title = `Mayoritas mood: ${dominantMood}`;
-          } else if (dominantMood.mixed) {
-            const iconList = dominantMood.mixed.map(m => moodIcons[m] || '').join(' ');
-            dayDiv.innerHTML = `${i}<br><span>${iconList}</span>`;
-            dayDiv.title = `Mood imbang: ${dominantMood.mixed.join(', ')}`;
-          }
-        } else {
-          dayDiv.textContent = i;
-        }
-        grid.appendChild(dayDiv);
+  const moodIcons = {
+    Happy: '😊',
+    Good: '🙂',
+    Neutral: '😐',
+    Bad: '😞',
+    Angry: '😠',
+    Sad: '😢',
+  };
+
+  // Tambahkan padding di awal bulan
+  for (let i = 0; i < startDay; i++) {
+    const emptyDiv = document.createElement('div');
+    emptyDiv.classList.add('calendar-day', 'empty');
+    grid.appendChild(emptyDiv);
+  }
+
+  for (let i = 1; i <= daysInMonth; i++) {
+    const dayDiv = document.createElement('div');
+    dayDiv.classList.add('calendar-day');
+    dayDiv.dataset.day = i;
+
+    const moods = moodByDate?.[i];
+    if (moods && moods.length > 0) {
+      const dominantMood = getDominantMood(moods);
+      dayDiv.style.backgroundColor = getMoodColor(dominantMood);
+      if (typeof dominantMood === 'string') {
+        dayDiv.innerHTML = `${i}<br><span>${moodIcons[dominantMood] || ''}</span>`;
+        dayDiv.title = `Mayoritas mood: ${dominantMood}`;
+      } else if (dominantMood.mixed) {
+        const iconList = dominantMood.mixed.map(m => moodIcons[m] || '').join(' ');
+        dayDiv.innerHTML = `${i}<br><span>${iconList}</span>`;
+        dayDiv.title = `Mood imbang: ${dominantMood.mixed.join(', ')}`;
       }
-      document.getElementById('month-year-title').textContent = `${monthNames[month]} ${year}`;
+    } else {
+      dayDiv.textContent = i;
     }
+
+    // Highlight hari ini
+    const isToday =
+      i === today.getDate() &&
+      month === today.getMonth() &&
+      year === today.getFullYear();
+
+    if (isToday) {
+      dayDiv.classList.add('today-highlight');
+    }
+
+    grid.appendChild(dayDiv);
+  }
+
+  document.getElementById('month-year-title').textContent = `${monthNames[month]} ${year}`;
+}
 
     document.getElementById('prev-month').addEventListener('click', () => {
       currentMonth--;

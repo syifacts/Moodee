@@ -207,6 +207,18 @@ img {
   cursor: pointer;
 }
 
+.calendar-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  margin-bottom: 1rem;
+  font-weight: bold;
+  color: #666;
+}
+.today-highlight {
+ border-color: #433878 !important;
+  color: #333;
+  font-weight: bold;
+}
 
 @media (min-width: 768px) {
   .calendar-and-desc {

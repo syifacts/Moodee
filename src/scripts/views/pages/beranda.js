@@ -45,7 +45,16 @@ const Beranda = {
 
       <section class="articles">
         <h3>🗞️ Artikel</h3>
-        <div class="article-cards" id="article-container"></div>
+        <div class="scroll-wrapper-article">
+  <button id="scroll-article-left" aria-label="Scroll Left" class="scroll-button left">
+    <i class="fas fa-chevron-left"></i>
+  </button>
+  <div class="article-cards" id="article-container"></div>
+  <button id="scroll-article-right" aria-label="Scroll Right" class="scroll-button right">
+    <i class="fas fa-chevron-right"></i>
+  </button>
+</div>
+
       </section>
     `;
   },
@@ -156,6 +165,36 @@ const Beranda = {
 
       articleContainer.appendChild(card);
     });
+    // Geser artikel ke kiri/kanan
+const articleScrollLeftBtn = document.getElementById('scroll-article-left');
+const articleScrollRightBtn = document.getElementById('scroll-article-right');
+const articleContainerScroll = document.getElementById('article-container');
+
+const articleCard = document.querySelector('.article-card');
+const articleCardWidth = articleCard?.offsetWidth || 300;
+const articleCardGap = 32;
+const articleScrollAmount = articleCardWidth + articleCardGap;
+
+articleScrollLeftBtn.addEventListener('click', () => {
+  const currentScroll = articleContainerScroll.scrollLeft;
+  if (currentScroll <= 5) {
+    const maxScroll = articleContainerScroll.scrollWidth - articleContainerScroll.clientWidth;
+    articleContainerScroll.scrollTo({ left: maxScroll, behavior: 'smooth' });
+  } else {
+    articleContainerScroll.scrollBy({ left: -articleScrollAmount, behavior: 'smooth' });
+  }
+});
+
+articleScrollRightBtn.addEventListener('click', () => {
+  const maxScroll = articleContainerScroll.scrollWidth - articleContainerScroll.clientWidth;
+  const currentScroll = articleContainerScroll.scrollLeft;
+  if (currentScroll >= maxScroll - 5) {
+    articleContainerScroll.scrollTo({ left: 0, behavior: 'smooth' });
+  } else {
+    articleContainerScroll.scrollBy({ left: articleScrollAmount, behavior: 'smooth' });
+  }
+});
+
   },
 };
 

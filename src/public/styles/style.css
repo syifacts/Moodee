@@ -84,7 +84,7 @@ img {
 
 .hero-image {
   width: 100%;
-  max-height: 350px; /* Ubah sesuai selera agar tidak terlalu besar */
+  max-height: 500px; /* Ubah sesuai selera agar tidak terlalu besar */
   object-fit: cover; /* Biar gambar tetap proporsional */
   display: block;
 }
@@ -144,6 +144,12 @@ img {
   letter-spacing: 3px;
   text-align: justify;
   margin-right: 100px;
+}
+.tracking-message2 p {
+  font-size: 1.5rem;
+  letter-spacing: 3px;
+  text-align: center;
+  margin-top: 6rem;
 }
 .tracking-calendar {
   text-align: center;
@@ -209,6 +215,51 @@ img {
     gap: 60px;
     align-items: center;
   }
+}
+.tracking-hero {
+  text-align: center;
+  padding: 2rem;
+}
+
+.tracking-quote {
+  font-style: italic;
+  color: #666;
+  font-size: 1.1rem;
+  margin-top: 1rem;
+}
+.tracking-message3 p {
+  font-size: 1.5rem;
+  text-align: center;
+  margin-top: 10rem;
+  margin-bottom: 5rem;
+  letter-spacing: 3px;
+}
+.mood-monitoring,
+.mood-chart-section {
+  margin: 2rem auto;
+  max-width: 700px;
+  padding: 1rem;
+  background: #f8f9fc;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  margin-bottom: 80px;
+}
+
+.mood-monitoring h3,
+.mood-chart-section h3 {
+  text-align: center;
+  color: #483E87;
+  margin-bottom: 1rem;
+}
+
+#moodChart {
+  max-width: 100%;
+  height: auto;
+}
+
+.calendar-container {
+  margin-top: 1rem;
+  min-height: 300px;
 }
 
 /* ==== Journaling Section ==== */
@@ -441,16 +492,32 @@ img {
   margin-left: 230px;
 }
 
-.article-cards {
-  display: grid;
- grid-template-columns: repeat(4, 1fr);
-  gap: 32px;
-  max-width: 1900px;
-  margin: 40px auto;
+/* Scroll wrapper mengatur tampilan horizontal dan tombol scroll */
+.scroll-wrapper-article {
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
   padding: 0 20px;
+  gap: 10px;
+}
+/* Kontainer artikel berbentuk horizontal scroll */
+.article-cards {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding: 20px 0;
+}
+
+.article-cards::-webkit-scrollbar {
+  display: none;
 }
 
 .article-card {
+  flex: 0 0 calc(25% - 18px); /* 4 artikel per baris (100% / 4 - gap) */
+  scroll-snap-align: start;
   background: linear-gradient(135deg, #f4efff, #ffffff);
   border-radius: 20px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
@@ -459,6 +526,8 @@ img {
   flex-direction: column;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   border: 1px solid #ececec;
+  min-height: 500px;
+  height: 100%;
 }
 
 .article-card:hover {
@@ -534,6 +603,7 @@ footer {
   font-style: italic;
   font-family: 'Poppins', sans-serif;
   text-align: center;
+  color: #000;
 }
 
 .tracking-form {

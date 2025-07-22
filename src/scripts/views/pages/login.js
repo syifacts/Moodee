@@ -8,7 +8,7 @@ const Login = {
 
         <div class="login-card">
           <h2>Welcome back to Moodee!</h2>
-          <p>Please enter your  details</p>
+          <p>Please enter your details</p>
 
           <form id="login-form" class="login-form">
             <label for="username">Username</label>
@@ -20,20 +20,27 @@ const Login = {
             <button type="submit">Login</button>
 
             <div class="signup-link">
-              You don’t have account?
+              You don’t have an account?
               <a href="#/register">Sign Up</a>
             </div>
           </form>
-
-          <p id="login-message" class="login-message"></p>
         </div>
 
         <img src="icons/login1.png" alt="Emoji Mood" class="right-background" />
-      </section>
-<div id="session-modal" class="modal hidden">
-  <div class="modal-content">
-    <p>Sesi Anda telah habis. Silakan login kembali.</p>
-    <button id="session-ok">OK</button>
+
+        <!-- Session Modal -->
+        <div id="session-modal" class="modal hidden">
+          <div class="modal-content">
+            <p>Sesi Anda telah habis. Silakan login kembali.</p>
+            <button id="session-ok">OK</button>
+          </div>
+        </div>
+
+        <!-- Popup Notification (sama seperti register) -->
+<div id="login-popup" class="popup-overlay">
+  <div class="popup-card">
+    <button class="close-btn">&times;</button>
+    <p id="popup-message"></p>
   </div>
 </div>
 
@@ -42,7 +49,7 @@ const Login = {
 
   async afterRender() {
     const form = document.querySelector('#login-form');
-    const messageElement = document.querySelector('#login-message');
+    const popup = document.querySelector('#popup');
 
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
@@ -51,29 +58,48 @@ const Login = {
       const password = form.querySelector('#password').value.trim();
 
       const { data, error } = await supabase
-  .from('data_pengguna') 
-  .select('*')
-  .eq('username', username)
-  .eq('password', password)
-  .single();
-
+        .from('data_pengguna') 
+        .select('*')
+        .eq('username', username)
+        .eq('password', password)
+        .single();
 
       if (error || !data) {
-        messageElement.textContent = 'Username atau kata sandi salah';
-        messageElement.style.color = 'red';
+        showPopup('Username atau kata sandi salah', 'error');
         return;
       }
 
       localStorage.setItem('user', JSON.stringify(data));
       localStorage.setItem('lastActivity', new Date().getTime());
 
-      messageElement.textContent = 'Login berhasil! Mengalihkan...';
-      messageElement.style.color = 'green';
+      showPopup('Login berhasil!', 'success');
 
       setTimeout(() => {
         window.location.hash = '/';
-      }, 1000);
+      }, 1500);
     });
+
+    function showPopup(message, type = 'error') {
+  const popupOverlay = document.querySelector('#login-popup');
+  const popupCard = popupOverlay.querySelector('.popup-card');
+  const popupMessage = document.querySelector('#popup-message');
+  const closeBtn = popupOverlay.querySelector('.close-btn');
+
+  const icon = type === 'success' ? '✅' : '⚠️';
+  popupMessage.innerHTML = `<span class="popup-icon">${icon}</span> ${message}`;
+
+  popupCard.className = 'popup-card'; // Reset class
+  popupCard.classList.add(type === 'success' ? 'popup-success' : 'popup-error');
+  popupOverlay.classList.add('show');
+
+  // Klik tombol close
+  closeBtn.addEventListener('click', () => popupOverlay.classList.remove('show'));
+  // Klik luar modal
+  popupOverlay.addEventListener('click', (e) => {
+    if (e.target === popupOverlay) popupOverlay.classList.remove('show');
+  });
+
+    }
   },
 };
 

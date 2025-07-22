@@ -30,7 +30,7 @@ const Tracking = {
 
       <section class="tracking-form">
         <img src="/icons/pic10.png" alt="Mood Calendar" />
-        <h2>Bagaimana Perasaanmu Saat Ini?</h2>
+        <h2>🍂 Bagaimana Perasaanmu Saat Ini?</h2>
         <p>Pilih suasana hati sesuai dengan perasaanmu saat ini</p>
         <div class="mood-buttons">
           <button class="img-button" data-mood="Happy"><img src="icons/happy.png" alt="Happy" /></button>
@@ -40,10 +40,11 @@ const Tracking = {
           <button class="img-button" data-mood="Angry"><img src="icons/angry.png" alt="Angry" /></button>
         </div>
       </section>
-
+<section class="calendar">
       <section class="tracking-message2">
         <div class="pesan-tracking">
-          <p>Luangkan sejenak untuk mencatat mood-mu, dan lihat bagaimana perasaanmu berkembang setiap hari melalui kalender berikut.</p>
+        <h2> 🗓️Kalender Mood </h2>
+        <p>Luangkan sejenak untuk mencatat mood-mu, dan lihat bagaimana perasaanmu berkembang setiap hari melalui kalender berikut.</p>
         </div>
       </section>
 
@@ -64,10 +65,11 @@ const Tracking = {
   </div>
         <div class="calendar-grid" id="calendar-grid"></div>
       </section>
-
+</section>
       <section class="tracking-message3">
         <div class="pesan-tracking1">
-          <p>Lihat ilustrasi suasana hatimu dalam grafik berikut untuk mengetahui pola mood bulananmu.</p>
+        <h2>📈 Grafik Mood</h2>
+          <p>Lihat ilustrasi suasana hatimu dalam grafik berikut untuk mengetahui pola mood harianmu.</p>
         </div>
       </section>
 
@@ -370,7 +372,7 @@ const Tracking = {
       const ctx = document.getElementById('moodChart').getContext('2d');
       if (window.moodChartInstance) window.moodChartInstance.destroy();
       window.moodChartInstance = new Chart(ctx, {
-        type: 'bar',
+        type: 'line',
         data: {
           labels: data.map(item => item.date),
           datasets: [{

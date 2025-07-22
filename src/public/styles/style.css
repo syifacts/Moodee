@@ -1,7 +1,7 @@
 /* Reset dasar */
 body {
   margin: 0;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   color: #222;
   background-color: #fff;
   line-height: 1.6;
@@ -23,7 +23,7 @@ img {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  background: linear-gradient(to right, #433878 0%, #524289 23%, #E4B1F0 100%);
+  background: linear-gradient(to right, #433878 0%, #524289 23%, #e4b1f0 100%);
   padding: 20px 40px;
   gap: 32px;
   font-size: 28px;
@@ -57,21 +57,20 @@ img {
 .logo {
   margin-left: 50px;
   font-size: 36px;
-    font-family: 'Poppins', sans-serif;
-    color: #fff;
-    font-weight: bold;
-    letter-spacing: 5px;
-    line-height: 120%;
-  }
-  .logo img {
-    margin-left: -30px;
-    height: 120px;
-  }
-  .logo span {
-    margin-left: 30px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 10, 4 );
-
-  }
+  font-family: "Poppins", sans-serif;
+  color: #fff;
+  font-weight: bold;
+  letter-spacing: 5px;
+  line-height: 120%;
+}
+.logo img {
+  margin-left: -30px;
+  height: 120px;
+}
+.logo span {
+  margin-left: 30px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 10, 4);
+}
 /* ==== Hero Section ==== */
 .hero {
   width: 100%;
@@ -89,8 +88,6 @@ img {
   display: block;
 }
 
-
-
 .hero-content h2 {
   font-size: 40px;
   margin-bottom: 10px;
@@ -102,7 +99,6 @@ img {
   transition: opacity 0.5s ease-in-out;
 }
 
-
 .hero-content p {
   font-size: 25px;
   color: #444;
@@ -110,7 +106,6 @@ img {
   margin-right: 100px;
   margin-top: 50px;
   letter-spacing: 3px;
-
 }
 
 .calendar-and-desc {
@@ -137,7 +132,6 @@ img {
 .statistics h3 {
   font-size: 30px;
   color: #222;
-
 }
 .statistics p {
   font-size: 30px;
@@ -145,11 +139,19 @@ img {
   text-align: justify;
   margin-right: 100px;
 }
+.tracking-message2 h2 {
+  font-weight: bold;
+  margin-left: 10rem;
+  margin-top: 5rem;
+  font-size: 1.9rem;
+}
 .tracking-message2 p {
   font-size: 1.5rem;
   letter-spacing: 3px;
-  text-align: center;
-  margin-top: 6rem;
+  font-weight: 100;
+  margin-top: 10px;
+  margin-right: 100px;
+  margin-left: 180px;
 }
 .tracking-calendar {
   text-align: center;
@@ -162,6 +164,13 @@ img {
   margin-left: auto;
   margin-right: auto;
   transition: background-color 0.3s ease;
+  margin-bottom: 50px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  outline: 2px solid rgba(0, 0, 0, 0.1);
+}
+.calendar {
+  background-color: #fdf7ff;
+  padding: 5px;
 }
 
 .tracking-calendar h3 {
@@ -215,7 +224,7 @@ img {
   color: #666;
 }
 .today-highlight {
- border-color: #433878 !important;
+  border-color: #433878 !important;
   color: #333;
   font-weight: bold;
 }
@@ -239,28 +248,35 @@ img {
   font-size: 1.1rem;
   margin-top: 1rem;
 }
+.tracking-message3 h2 {
+  margin-top: 5rem;
+  margin-left: 10rem;
+  font-size: 1.9rem;
+}
 .tracking-message3 p {
   font-size: 1.5rem;
-  text-align: center;
-  margin-top: 10rem;
+  margin-left: 180px;
+  margin-top: 2rem;
   margin-bottom: 5rem;
   letter-spacing: 3px;
 }
 .mood-monitoring,
 .mood-chart-section {
   margin: 2rem auto;
-  max-width: 700px;
+  max-width: 1000px;
   padding: 1rem;
   background: #f8f9fc;
   border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
   margin-bottom: 80px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  outline: 2px solid rgba(0, 0, 0, 0.1);
 }
 
 .mood-monitoring h3,
 .mood-chart-section h3 {
   text-align: center;
-  color: #483E87;
+  color: #483e87;
   margin-bottom: 1rem;
 }
 
@@ -298,7 +314,6 @@ img {
 
 .journaling-content p {
   max-width: 900px;
-
 }
 .journaling p {
   font-size: 30px;
@@ -341,7 +356,7 @@ img {
 
 /* Tombol Scroll */
 .scroll-button {
-  background-color: #483E87;
+  background-color: #483e87;
   border: none;
   border-radius: 50%;
   color: white;
@@ -388,7 +403,7 @@ img {
 
   /* Hilangkan scrollbar semua browser */
   scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none;  /* IE & Edge */
+  -ms-overflow-style: none; /* IE & Edge */
 }
 
 .card-list::-webkit-scrollbar {
@@ -405,17 +420,15 @@ img {
   flex-shrink: 0;
   scroll-snap-align: start;
   scroll-snap-stop: always;
-  box-shadow:
-    0 4px 6px rgba(0, 0, 0, 0.1),
-    0 8px 20px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 8px 20px rgba(0, 0, 0, 0.08);
 }
 
 .card.mood-fact {
-  background-color: #FCEFF8;
+  background-color: #fceff8;
 }
 
 .card.tips {
-  background-color: #BA84FE;
+  background-color: #ba84fe;
 }
 
 .card p {
@@ -428,7 +441,7 @@ img {
 }
 
 .card.mood-fact strong {
-  color: #483E87;
+  color: #483e87;
   font-size: 40px;
   font-weight: bold;
   display: block;
@@ -436,7 +449,7 @@ img {
 }
 
 .card.tips strong {
-  color: #FFFFFF;
+  color: #ffffff;
   font-size: 40px;
   font-weight: bold;
   display: block;
@@ -489,7 +502,6 @@ img {
 .card.tips p {
   color: #fff;
 }
-
 
 /* ==== Artikel ==== */
 .articles {
@@ -589,7 +601,6 @@ img {
   color: #5e30d1;
 }
 
-
 /* ==== Footer ==== */
 footer {
   background: linear-gradient(to right, #433878 0%, #524289 23%, #513857 100%);
@@ -613,21 +624,21 @@ footer {
   font-weight: bold;
   margin-top: 80px;
   font-style: italic;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   text-align: center;
   color: #000;
 }
 
 .tracking-form {
   padding: 2rem;
+  margin-bottom: 50px;
   text-align: center;
-
 }
 .tracking-form h2 {
   font-size: 30px;
   margin-top: -250px;
   margin-left: 550px;
-    display: flex; 
+  display: flex;
 }
 .tracking-form p {
   font-size: 21px;
@@ -641,10 +652,9 @@ footer {
   height: 280px;
   margin-left: 100px;
   margin-top: 60px;
-    display: flex;
+  display: flex;
 }
 .mood-options {
-    
   justify-content: center;
   gap: 1rem;
   margin-top: 100px;
@@ -657,7 +667,7 @@ footer {
   border-radius: 12px;
   padding: 10px 16px;
   cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .tracking-calendar {
@@ -688,10 +698,11 @@ footer {
   padding: 2rem;
   flex-wrap: wrap; /* agar responsif saat layar kecil */
   margin-bottom: 100px;
+  margin-top: 50px;
 }
 
 .circle-message {
-  background: #483E87;
+  background: #483e87;
   color: white;
   padding: 2rem;
   border-radius: 50%;
@@ -757,13 +768,14 @@ footer {
   color: #2d3436;
   text-align: center;
   padding: 1.5rem 2rem;
-  background-color: #FCEFF8;
+  background-color: #fceff8;
   border-radius: 1.5rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
   max-width: 500px;
   margin-left: auto;
   margin-right: auto;
-  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease,
+    box-shadow 0.3s ease;
   cursor: default;
 }
 .mood-log:hover {
@@ -773,7 +785,7 @@ footer {
 }
 
 .mood-log strong {
-  color: #483E87;
+  color: #483e87;
 }
 
 .mood-log span {
@@ -781,7 +793,7 @@ footer {
   font-size: 1.6rem;
   padding: 0.25rem 0.75rem;
   border-radius: 1rem;
-  background-color: #483E87;
+  background-color: #483e87;
   margin-left: 0.5rem;
 }
 .popup-toast {
@@ -789,7 +801,7 @@ footer {
   bottom: 30px;
   left: 50%;
   transform: translateX(-50%);
-  background-color: #483E87;
+  background-color: #483e87;
   color: #fff;
   padding: 1rem 2rem;
   border-radius: 2rem;
@@ -810,8 +822,6 @@ footer {
   display: none;
 }
 
-
-
 /* JOURNALING */
 .sectionjourn {
   display: flex;
@@ -822,7 +832,7 @@ footer {
   border-radius: 1.5rem;
   max-width: 1000px;
   margin: 50px auto 0 auto;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .sectionjourn .tab-button {
@@ -849,7 +859,7 @@ footer {
   max-width: 1000px;
   margin: 20px auto;
   font-family: sans-serif;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .postingan-header {
@@ -870,7 +880,8 @@ footer {
   height: 48px;
   border-radius: 50%;
   border: 2px solid #9b8ac7;
-  background: url('https://via.placeholder.com/48') center center / cover no-repeat;
+  background: url("https://via.placeholder.com/48") center center / cover
+    no-repeat;
 }
 
 .username {
@@ -1071,93 +1082,162 @@ footer {
     font-size: 12px;
   }
 }
+/* ==== ACCOUNT ==== */
+.account-wrapped {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin: 2rem auto;
+  max-width: 2000px;
+  padding: 1rem;
+}
 
+/* HERO BOX (KIRI) */
 .account-hero {
-  background: #483E87;
-  stroke: #000;
+  background: #483e87;
   padding: 2rem;
   color: white;
   border-radius: 2rem;
-  margin: 2rem auto;
-  max-width: 900px;
+  width: 900px;
+  height: 210px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   outline: 2px solid rgba(0, 0, 0, 0.3);
+  transform: translateX(-20px); 
 }
 
-.hero-box{
+.hero-box {
   display: flex;
+  align-items: center;
 }
+
+.hero-box div {
+  max-width: 300px;
+}
+
 .hero-box h2 {
   font-size: 2.5rem;
-  margin-top: -5px;
-  margin-left: 50px;
-  color: #FCEFF8;
+  margin: 0;
+  color: #fceff8;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+  margin-left: 50px;
+  width: 300px;
 }
 
 .hero-box p {
-  margin: 0;
   font-weight: 300;
-  margin-top: -20px;
-  margin-left: 50px;
   font-size: 1.1rem;
+  margin-top: 0.5rem;
+   margin-left: 50px;
+   width: 400px;
 }
 
 .hero-img {
   width: 128px;
   height: 128px;
-  display: flex;
-  margin-left: 400px;
+  margin-left: 27rem;
 }
 
+/* STATS (KANAN) */
 .account-stats {
   display: flex;
-  gap: 20rem;
+  flex-direction: column;
+  gap: 2rem;
   justify-content: center;
-  margin: 2rem auto;
-  max-width: 900px;
 }
 
 .stat-box {
-  background: #FCEFF8;
+  background: #fceff8;
   padding: 1.5rem;
   border-radius: 2rem;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   text-align: center;
   font-size: 1.1rem;
-  width: 250px;
-  outline: 2px solid rgba(0, 0, 0, 0.3);
-  color: #483E87;
-  margin-bottom: 50px;
- 
+  width: 750px;
+  outline: 2px solid rgba(0, 0, 0, 0.1);
+  color: #483e87;
+  transform: translateX(50px); 
 }
+
+.stat-box p {
+  margin: 0 0 1rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  width: 100%;
+  display: flex;
+  justify-content: space-between; /* Teks kiri dan strong kanan */
+  align-items: center;
+  gap: 1rem;
+}
+
+.stat-box p span {
+  text-align: left;
+  flex: 1;
+}
+
 .stat-box strong {
   font-size: 2rem;
-  color: #483E87;
+  color: #483e87;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+  white-space: nowrap; /* Cegah strong pindah baris */
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .account-wrapped {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .account-hero, .account-stats {
+    width: 100%;
+    max-width: 600px;
+  }
+
+  .hero-box {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-img {
+    margin: 1rem auto 0;
+  }
+
+  .account-stats {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .stat-box {
+    width: 100%;
+    max-width: 400px;
+  }
 }
 
 .account-info {
   background: #fff;
+    flex: 1 1 50%;
   border-radius: 1rem;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
-   outline: 2px solid rgba(0, 0, 0, 0.3);
-  max-width: 900px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  outline: 2px solid rgba(0, 0, 0, 0.1);
+  max-width: 800px;
   margin: 2rem auto;
   padding: 2rem;
   text-align: center;
+  transform: translateX(0px); 
 }
-
 .account-info h3 {
   color: #5b2b89;
-  font-size: 2.5rem;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
   margin-bottom: 2rem;
+  font-size: 2rem;
+
 }
 
-.info-fields{
+.info-fields {
   margin-left: 80px;
   margin-right: 80px;
 }
@@ -1207,25 +1287,63 @@ footer {
 
 .info-fields a {
   display: inline-block;
-  color: #845EC2;
+  color: #845ec2;
   font-weight: bold;
   margin-top: 0.5rem;
   text-decoration: none;
 }
 
 .mood-history {
-  max-width: 700px;
   margin: 2rem auto;
   text-align: center;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  outline: 2px solid rgba(0, 0, 0, 0.1);
+  border-radius: 25px;
+  flex: 1 1 40%;
+  max-width: 900px;
+}
+
+#moodPieChart {
+  width: 400px; /* default width lebih besar */
+  height: 400px; /* default height lebih besar */
+  margin: 0 auto;
+  margin-bottom: 70px;
+}
+
+.mood-percentage-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+  justify-content: center;
+  width: 900px;
+}
+
+.mood-percentage-list .mood-item {
+  display: flex;
+  align-items: center;
+  background-color: #f7f7f7;
+  padding: 6px 12px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.06);
+  font-size: 0.9rem;
+  color: #333;
+  margin-bottom: 80px;
+  font-size: 1.2rem;
+}
+
+.mood-percentage-list .mood-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 8px;
 }
 
 .mood-history h3 {
-  font-size: 1.8rem;
-  background-color: #845EC2;
-  color: white;
-  padding: 0.8rem 1.5rem;
-  border-radius: 1rem;
-  display: inline-block;
+  font-size: 2rem;
+  color: #5b2b89;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+  margin-top: 55px;
 }
 
 .mood-list {
@@ -1239,32 +1357,79 @@ footer {
   background: #fceeff;
   padding: 0.8rem 1.2rem;
   border-radius: 1rem;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   display: flex;
   justify-content: space-between;
   font-weight: 500;
   color: #4a2e73;
 }
 
-.logout-section {
-  text-align: center;
-  margin: 2rem;
-}
-
 .logout-button {
-  background-color: #845EC2;
-  color: white;
+  margin: 100px auto;
+  width: 200px;
+  height: 70px;
+  display: block;
+  background-color: #f35;
+  color: #fff;
   border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 1rem;
-  font-size: 1rem;
+  padding: 10px 20px;
+  font-weight: bold;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  font-size: 1.5rem;
 }
 
 .logout-button:hover {
-  background-color: #6c45a9;
+  background-color: #d22;
 }
+
+.highlight-box {
+  background-color: #fceff8;
+  border-radius: 1.5rem;
+  padding: 1.5rem 2rem;
+  margin-top: 2rem;
+  width: 730px; /* full width dari .left-column */
+  height: 165px;
+  border: 1px solid #e0e0e0;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  outline: 2px solid rgba(0, 0, 0, 0.1);
+  transform: none; /* tidak digeser ke kiri */
+  margin-top: -20px;
+}
+
+
+.highlight-box:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.highlight-box h2 {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+  color: #5b2b89;
+  text-align: center;
+
+}
+.highlight-box h4 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #666;
+  text-align: center;
+}
+.highlight-box strong {
+  background-color: #483E87;
+  border-radius: 10px;
+  font-size: 1.3rem;
+  color: #fff;
+  display: inline-block; /* penting agar padding bekerja pada span/strong */
+  padding: 0.2rem 0.8rem; /* atur tinggi & lebar background */
+  margin: 0 0.5rem; /* jarak antar elemen */
+  line-height: 1.5;
+}
+
 
 
 /* LOGIN */
@@ -1279,8 +1444,25 @@ footer {
   overflow: hidden;
   gap: 40px;
 }
-
-
+.account-summary-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 2rem;
+  max-width: 2000px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+.left-column {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  flex: 1;
+  min-width: 300px;
+  max-width: 800px;
+  margin-left: 200px;
+}
 /* Login Card */
 .login-card {
   background: #fceeff;
@@ -1294,11 +1476,10 @@ footer {
 
 .login-card h2 {
   font-size: 2.2rem;
-  font-weight:bolder;
-  color: #483E87;
+  font-weight: bolder;
+  color: #483e87;
   margin-bottom: 0.5rem;
   margin-left: 50px;
-  
 }
 
 .login-card p {
@@ -1318,7 +1499,7 @@ footer {
 .login-form label {
   margin-top: 2rem;
   font-weight: 600;
-  color: #483E87;
+  color: #483e87;
   margin-bottom: 5px;
   font-size: 20px;
   margin-left: 1rem;
@@ -1413,21 +1594,7 @@ footer {
   }
 }
 
-.logout-button {
-  margin: 24px auto;
-  display: block;
-  background-color: #f35;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  font-weight: bold;
-  border-radius: 8px;
-  cursor: pointer;
-}
 
-.logout-button:hover {
-  background-color: #d22;
-}
 .modal {
   position: fixed;
   top: 0;
@@ -1451,6 +1618,7 @@ footer {
 .hidden {
   display: none;
 }
+
 /* REGISTER */
 .register-page {
   position: relative;
@@ -1466,16 +1634,16 @@ footer {
 
 /* Kartu Formulir Registrasi */
 .register-card {
-    display: flex;
-    align-items: center; 
-    gap: 3rem;
-    width: 100%;
-    max-width: 1000px;
-    background-color: #fceeff;
-    padding: 3rem;
-    border-radius: 24px;
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
-} 
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  width: 100%;
+  max-width: 1000px;
+  background-color: #fceeff;
+  padding: 3rem;
+  border-radius: 24px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+}
 
 .register-img,
 .register-content {
@@ -1491,18 +1659,18 @@ footer {
 }
 
 .register-content h2 {
-    font-size: 2.2rem;
-    font-weight:bolder;
-    color: #483E87;
-    margin-bottom: 0.5rem;
+  font-size: 2.2rem;
+  font-weight: bolder;
+  color: #483e87;
+  margin-bottom: 0.5rem;
 }
 
 .register-content p {
-    color: #939196;
-    font-size: 0.95rem;
-    margin-top: -0.5rem;
-    margin-left: 0.35rem;
-} 
+  color: #939196;
+  font-size: 0.95rem;
+  margin-top: -0.5rem;
+  margin-left: 0.35rem;
+}
 
 /* Styling Formulir */
 
@@ -1511,23 +1679,23 @@ footer {
 }
 
 .register-form label {
-    margin-top: 2rem;
-    font-weight: 600;
-    color: #483E87;
-    margin-bottom: 0.5rem;
-    font-size: 20px;
-    margin-left: 1rem;
+  margin-top: 2rem;
+  font-weight: 600;
+  color: #483e87;
+  margin-bottom: 0.5rem;
+  font-size: 20px;
+  margin-left: 1rem;
 }
 
 .register-form input {
-    padding: 10px 15px;
-    width: 90%;
-    margin-top: 0.5rem;
-    margin-bottom: 1.5rem;
-    border-radius: 15px;
-    border: none;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
-    font-size: 1rem;
+  padding: 10px 15px;
+  width: 90%;
+  margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
+  border-radius: 15px;
+  border: none;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  font-size: 1rem;
 }
 
 /* .register-form input::placeholder {
@@ -1536,65 +1704,165 @@ footer {
 
 /* Tombol Register */
 .register-form button {
-    width: 80%;
-    margin-top: 2rem;
-    margin-left: 2.5rem;
-    background-color: #5e3c9d;
-    color: #fff;
-    border: none;
-    padding: 12px;
-    font-weight: bold;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    font-size: 1rem;
+  width: 80%;
+  margin-top: 2rem;
+  margin-left: 2.5rem;
+  background-color: #5e3c9d;
+  color: #fff;
+  border: none;
+  padding: 12px;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 1rem;
 }
 
 .register-form button:hover {
-    background-color: #452e73; /* Warna ungu lebih gelap saat disentuh */
+  background-color: #452e73; /* Warna ungu lebih gelap saat disentuh */
 }
 
 /* Link untuk Sign In / Login */
 .signup-link {
-    text-align: center;
-    margin-top: 1.5rem;
-    font-size: 0.95rem;
-    color: #616161;
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.95rem;
+  color: #616161;
 }
 
 .signup-link a {
-    color: #5C5494;
-    font-weight: 600;
-    text-decoration: none;
+  color: #5c5494;
+  font-weight: 600;
+  text-decoration: none;
 }
 
 .signup-link a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 /* Pesan Error/Sukses (opsional, jika digunakan) */
 .register-message {
-    text-align: center;
-    margin-top: 1rem;
-    color: red;
-    font-weight: 500;
+  text-align: center;
+  margin-top: 1rem;
+  color: red;
+  font-weight: 500;
 }
 
 /* Desain Responsif untuk Layar Kecil (Mobile) */
 @media (max-width: 860px) {
-    .register-page {
-        flex-direction: column;
-        padding: 1rem;
-        gap: 2rem;
-    }
+  .register-page {
+    flex-direction: column;
+    padding: 1rem;
+    gap: 2rem;
+  }
 
-    .left-illustration {
-        display: none; /* Sembunyikan gambar di layar kecil */
-    }
+  .left-illustration {
+    display: none; /* Sembunyikan gambar di layar kecil */
+  }
 
-    .register-card {
-        width: 100%;
-        max-width: 450px;
-        padding: 2rem;
-    }
+  .register-card {
+    width: 100%;
+    max-width: 450px;
+    padding: 2rem;
+  }
+}
+/* Lapisan Latar (Overlay) */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s, visibility 0.3s;
+  z-index: 1000;
+}
+
+/* Kelas 'show' untuk menampilkan pop-up */
+.popup-overlay.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Kartu Pop-up yang disempurnakan */
+.popup-card {
+  /* Tampilan utama */
+  color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
+
+  /* Layout di dalam kartu (untuk ikon & teks) */
+  display: flex;
+  align-items: flex-start; /* Sejajarkan dari atas */
+  gap: 1rem; /* Jarak antara ikon dan teks */
+
+  /* Ukuran yang lebih seimbang */
+  padding: 1rem;
+  width: 90%;
+
+  position: relative;
+  transform: scale(0.95);
+  transition: transform 0.3s ease;
+}
+
+.popup-card.popup-success {
+  background-color: #e6f4ea;
+  color: #185e2b;
+  border-left: 5px solid #34a853;
+  max-width: 420px;
+}
+
+.popup-card.popup-error {
+  max-width: 450px;
+  background-color: #fce8e6;
+  color: #c53727;
+  border-left: 5px solid #d93025;
+}
+
+.popup-overlay.show .popup-card {
+  transform: scale(1);
+}
+
+/* Ikon di dalam pop-up */
+.popup-icon {
+  font-size: 1.5rem;
+  line-height: 1.5; /* Sesuaikan dengan line-height teks */
+}
+
+/* Pesan teks di dalam pop-up */
+#popup-message {
+  text-align: left;
+  margin: 0;
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/* Tombol close */
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.close-btn:hover {
+  opacity: 1;
+}
+
+.popup-success .close-btn {
+  color: #185e2b; /* Warna hijau tua, sesuai warna teks */
+}
+
+.popup-error .close-btn {
+  color: #c53727; /* Warna merah tua, sesuai warna teks */
 }

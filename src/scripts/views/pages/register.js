@@ -29,7 +29,12 @@ const Register = {
                 <a href="#/login">Sign In</a>
               </div>
             </form>
-          <p id="register-message" class="register-message"></p>
+          </div>
+          <div id="error-popup" class="popup-overlay">
+            <div class="popup-card">
+              <button class="close-btn">&times;</button>
+              <p id="popup-message"></p>
+            </div>
           </div>
         </div>
 
@@ -37,50 +42,81 @@ const Register = {
     `;
   },
 
-  async afterRender() {
+async afterRender() {
+    // 1. Ambil semua elemen yang diperlukan
     const form = document.querySelector('#register-form');
-    const messageElement = document.querySelector('#register-message');
-    
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const name = form.querySelector('#name').value.trim();
-      const username = form.querySelector('#username').value.trim();
-      const password = form.querySelector('#password').value.trim();
+    const popupOverlay = document.querySelector('#error-popup');
+    const popupCard = popupOverlay.querySelector('.popup-card');
+    const popupMessage = document.querySelector('#popup-message');
+    const closeBtn = popupOverlay.querySelector('.close-btn');
+    const submitButton = form.querySelector('button[type="submit"]');
 
-      const { data: existingUser, error: checkError } = await supabase
-        .from('data_pengguna')
-        .select('username')
-        .eq('username', username)
-        .maybeSingle();
-    
-      if (existingUser) {
-        messageElement.textContent = 'Registrasi gagal: Username sudah digunakan.';
-        messageElement.style.color = 'red';
-        return;
-      }
+    // 2. Fungsi showPopup yang lebih canggih (sesuai permintaan terakhir)
+    function showPopup(message, type = 'error') {
+        const icon = type === 'success' ? '✅' : '⚠';
+        popupMessage.innerHTML = `<span class="popup-icon">${icon}</span> ${message}`;
 
-      if (checkError) {
-        messageElement.textContent = 'Terjadi kesalahan saat memeriksa username.';
-        messageElement.style.color = 'red';
-        return;
-      }
-    
-      const { error: insertError } = await supabase
-        .from('data_pengguna')
-        .insert([{ name, username, password }]);
+        
+        // Atur kelas pada kartu untuk mengubah warnanya
+        popupCard.className = 'popup-card'; // Reset kelas menjadi dasar
+        popupCard.classList.add(type === 'success' ? 'popup-success' : 'popup-error');
 
-      if (insertError) {
-        messageElement.textContent = 'Registrasi gagal, silakan coba lagi.';
-        messageElement.style.color = 'red';
-      } else {
-        messageElement.textContent = 'Registrasi berhasil! Silakan login.';
-        messageElement.style.color = 'green';
-        setTimeout(() => {
-          window.location.hash = '/login';
-        }, 1500);
-      }
+        popupOverlay.classList.add('show');
+    }
+
+    function closePopup() {
+        popupOverlay.classList.remove('show');
+    }
+
+    // 3. Event listener untuk menutup pop-up
+    closeBtn.addEventListener('click', closePopup);
+    popupOverlay.addEventListener('click', (e) => {
+        if (e.target === popupOverlay) {
+            closePopup();
+        }
     });
-  },
+
+    // 4. Logika utama saat form di-submit
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        submitButton.disabled = true;
+        submitButton.textContent = 'Mendaftarkan...';
+
+        const name = form.querySelector('#name').value.trim();
+        const username = form.querySelector('#username').value.trim();
+        const password = form.querySelector('#password').value.trim();
+
+        const { data: existingUser, error: checkError } = await supabase
+            .from('data_pengguna')
+            .select('username')
+            .eq('username', username)
+            .maybeSingle();
+        
+        if (existingUser || checkError) {
+            const message = existingUser ? 'Registrasi gagal: Username sudah digunakan.' : 'Terjadi kesalahan saat memeriksa username.';
+            showPopup(message);
+            submitButton.disabled = false;
+            submitButton.textContent = 'Register';
+            return;
+        }
+        
+        const { error: insertError } = await supabase
+            .from('data_pengguna')
+            .insert([{ name, username, password }]);
+
+        if (insertError) {
+            showPopup('Registrasi gagal: ' + insertError.message);
+            // Perbaikan: Aktifkan kembali tombol jika terjadi error
+            submitButton.disabled = false;
+            submitButton.textContent = 'Register';
+        } else {
+            showPopup('Registrasi berhasil! Anda akan dialihkan...', 'success');
+            setTimeout(() => {
+                window.location.hash = '/login';
+            }, 15000);
+        }
+    });
+},
 };
 
 export default Register;

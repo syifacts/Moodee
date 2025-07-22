@@ -1,16 +1,35 @@
 import UrlParser from '../routes/url-parser';
 import routes from '../routes/routes';
 
+function showSessionPopup() {
+  const modal = document.getElementById('session-modal');
+  const okButton = document.getElementById('session-ok');
+
+  if (modal && okButton) {
+    modal.classList.remove('hidden');
+
+    okButton.onclick = () => {
+      modal.classList.add('hidden');
+      localStorage.removeItem('user');
+      localStorage.removeItem('lastActivity');
+      window.location.hash = '/login';
+    };
+  } else {
+    // fallback jika modal tidak ditemukan
+    alert('Sesi Anda telah habis. Silakan login kembali.');
+    localStorage.removeItem('user');
+    localStorage.removeItem('lastActivity');
+    window.location.hash = '/login';
+  }
+}
+
 function checkSessionTimeout() {
   const lastActivity = parseInt(localStorage.getItem('lastActivity'), 10);
   const now = new Date().getTime();
-  const sessionDuration = 15 * 60 * 1000; // 15 menit
+  const sessionDuration = 15 * 60 * 1000;
 
   if (!lastActivity || now - lastActivity > sessionDuration) {
-    localStorage.removeItem('user');
-    localStorage.removeItem('lastActivity');
-    alert('Sesi Anda telah habis. Silakan login kembali.');
-    window.location.hash = '/login';
+    showSessionPopup();
   }
 }
 

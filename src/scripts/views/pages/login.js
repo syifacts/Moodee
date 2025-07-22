@@ -30,6 +30,13 @@ const Login = {
 
         <img src="icons/login1.png" alt="Emoji Mood" class="right-background" />
       </section>
+<div id="session-modal" class="modal hidden">
+  <div class="modal-content">
+    <p>Sesi Anda telah habis. Silakan login kembali.</p>
+    <button id="session-ok">OK</button>
+  </div>
+</div>
+
     `;
   },
 

@@ -4,30 +4,33 @@ const Register = {
   async render() {
     return `
       <section class="register-page">
-
         <div class="register-card">
-          <h2>Welcome to Moodee!</h2>
-          <p>Register your account</p>
+          <div class="register-img">
+            <img src="icons/register.png" alt="Character"/>
+          </div>
+          <div class="register-content">
+            <h2>Welcome to Moodee!</h2>
+            <p>Register your account</p>
+            
+            <form id="register-form" class="register-form">
+              <label for="name">Name</label>
+              <input type="text" id="name" placeholder="Enter your name" required />
 
-          <form id="register-form" class="register-form">
-            <label for="name">Name</label>
-            <input type="text" id="name" placeholder="Enter your name" required />
+              <label for="username">Username</label>
+              <input type="text" id="username" placeholder="Enter your username" required />
 
-            <label for="username">Username</label>
-            <input type="text" id="username" placeholder="Enter your username" required />
+              <label for="password">Password</label>
+              <input type="password" id="password" placeholder="Enter your password" required />
 
-            <label for="password">Password</label>
-            <input type="password" id="password" placeholder="Enter your password" required />
+              <button type="submit">Register</button>
 
-            <button type="submit">Register</button>
-
-            <div class="signup-link">
-              Already have an account? 
-              <a href="#/login">Sign In</a>
-            </div>
-          </form>
-
+              <div class="signup-link">
+                Already have an account? 
+                <a href="#/login">Sign In</a>
+              </div>
+            </form>
           <p id="register-message" class="register-message"></p>
+          </div>
         </div>
 
       </section>
@@ -46,7 +49,7 @@ const Register = {
 
       const { data: existingUser, error: checkError } = await supabase
         .from('data_pengguna')
-        .select('*')
+        .select('username')
         .eq('username', username)
         .maybeSingle();
     
@@ -57,7 +60,7 @@ const Register = {
       }
 
       if (checkError) {
-        messageElement.textContent = 'Terjadi kesalahan saat memeriksa username.' + checkError.message;
+        messageElement.textContent = 'Terjadi kesalahan saat memeriksa username.';
         messageElement.style.color = 'red';
         return;
       }
@@ -67,15 +70,17 @@ const Register = {
         .insert([{ name, username, password }]);
 
       if (insertError) {
-        messageElement.textContent = 'Registrasi gagal: ' + insertError.message;
+        messageElement.textContent = 'Registrasi gagal, silakan coba lagi.';
         messageElement.style.color = 'red';
       } else {
         messageElement.textContent = 'Registrasi berhasil! Silakan login.';
         messageElement.style.color = 'green';
-        window.location.hash = '/login';
+        setTimeout(() => {
+          window.location.hash = '/login';
+        }, 1500);
       }
     });
   },
 };
 
-export default Register;
+export default Register;

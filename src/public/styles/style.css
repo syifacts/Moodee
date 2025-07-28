@@ -1058,6 +1058,49 @@ footer {
   font-weight: bold;
   font-size: 0.9rem;
 }
+.mood-badge {
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: inline-block;
+  text-transform: capitalize;
+}
+
+.mood-badge.happy {
+  background-color: #01B26E;
+}
+
+.mood-badge.good {
+  background-color: #F97243;
+}
+
+.mood-badge.bad {
+  background-color: #368AE9;
+}
+
+.mood-badge.sad {
+  background-color: #856EFA;
+}
+
+.mood-badge.angry {
+  background-color: #DE385E;
+}
+
+.mood-badge.neutral {
+  background-color: #7f8c8d;
+}
+
+.badge.private {
+  background-color: #f44336;
+  color: white;
+  margin-left: 6px;
+  padding: 2px 6px;
+  border-radius: 8px;
+  font-size: 0.7rem;
+}
+
 
 .postingan-content {
   font-size: 1.1rem;

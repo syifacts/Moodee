@@ -99,43 +99,72 @@ const Journaling = {
 
       return data || [];
     };
+function getMoodEmoji(mood) {
+  switch (mood?.toLowerCase()) {
+    case 'happy': return '😄';
+    case 'good': return '😊';
+    case 'bad': return '😕';
+    case 'sad': return '😢';
+    case 'angry': return '😠';
+    default: return '🙂';
+  }
+}
+const fetchComments = async (journalId) => {
+  const { data, error } = await supabase
+    .from('comments')
+    .select('*')
+    .eq('journal_id', journalId)
+    .order('created_at', { ascending: true });
+
+  if (error) {
+    console.error('Error fetching comments:', error);
+    return [];
+  }
+
+  return data;
+};
 
     const renderPosts = (posts) => {
-      if (posts.length === 0) {
-        container.innerHTML = `<p style="text-align:center;">Belum ada postingan.</p>`;
-        return;
-      }
+  if (posts.length === 0) {
+    container.innerHTML = `<p style="text-align:center;">Belum ada postingan.</p>`;
+    return;
+  }
 
-      container.innerHTML = posts.map(post => `
-        <div class="postingan">
-         <div class="postingan-header">
-  <div class="user-info">
-    <div class="avatar"></div>
-    <div>
-      <div class="name-row">
-        <span class="username">${post.username}</span>
-        ${post.is_private ? '<span class="badge private">Private</span>' : ''}
-      </div>
-      <span class="date">${new Date(post.created_at).toLocaleDateString('id-ID', {
-        day: '2-digit',
-        month: 'short',
-        year: 'numeric'
-      })}</span>
-    </div>
-  </div>
-  <div class="badge-wrapper">
-    <span class="badge">${post.mood || 'Neutral'}</span>
-  </div>
-</div>
+  container.innerHTML = posts.map(post => {
+    const moodClass = post.mood?.toLowerCase() || 'neutral';
+    const emoji = getMoodEmoji(post.mood);
 
-          <div class="postingan-content">${post.content || '(tidak ada konten)'}</div>
-          <div class="postingan-footer">
-            <div class="icon-text">❤️ <span>${post.likes || 0}</span></div>
-            <div class="icon-text">💬 <span>${post.comment_count || 0}</span></div>
+    return `
+      <div class="postingan">
+        <div class="postingan-header">
+          <div class="user-info">
+            <div class="avatar"></div>
+            <div>
+              <div class="name-row">
+                <span class="username">${post.username}</span>
+                ${post.is_private ? '<span class="badge private">Private</span>' : ''}
+              </div>
+              <span class="date">${new Date(post.created_at).toLocaleDateString('id-ID', {
+                day: '2-digit',
+                month: 'short',
+                year: 'numeric'
+              })}</span>
+            </div>
+          </div>
+          <div class="badge-wrapper">
+            <span class="badge mood-badge ${moodClass}">${emoji} ${post.mood || 'Neutral'}</span>
           </div>
         </div>
-      `).join('');
-    };
+
+        <div class="postingan-content">${post.content || '(tidak ada konten)'}</div>
+        <div class="postingan-footer">
+          <div class="icon-text">❤️ <span>${post.likes || 0}</span></div>
+          <div class="icon-text">💬 <span>${post.comment_count || 0}</span></div>
+        </div>
+      </div>
+    `;
+  }).join('');
+};
 
     // Tab switching
     tabButtons.forEach(btn => {

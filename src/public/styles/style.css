@@ -732,12 +732,12 @@ footer {
 /* ==== Desain Responsif untuk Layar Kecil ==== */
 @media (max-width: 768px) {
     .footer-container {
-        flex-direction: column; /* Mengubah tata letak menjadi vertikal */
-        align-items: flex-start; /* Meratakan semua ke kiri */
+        flex-direction: column;
+        align-items: flex-start;
     }
 
     .footer-left, .footer-right {
-        width: 100%; /* Lebar penuh pada layar kecil */
+        width: 100%;
     }
 }
 /* ==== TRACKING ==== */

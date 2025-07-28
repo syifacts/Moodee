@@ -25,7 +25,7 @@ const Register = {
               <button type="submit">Register</button>
 
               <div class="signup-link">
-                Already have an account? 
+                Already have an account?
                 <a href="#/login">Sign In</a>
               </div>
             </form>

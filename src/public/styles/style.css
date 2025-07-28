@@ -995,9 +995,31 @@ footer {
 .postingan-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
+  align-items: flex-start;
+  gap: 0.5rem;
 }
+
+.user-info {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.user-info > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.name-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.badge-wrapper {
+  margin-left: auto;
+}
+
 
 .user-info {
   display: flex;

@@ -329,6 +329,27 @@ img {
     text-align: left;
   }
 }
+.sectionjourn {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.tab-button {
+  padding: 0.5rem 1.2rem;
+  border-radius: 999px;
+  background: #eee;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.tab-button.active {
+  background: #483e87;
+  color: white;
+}
+
 
 /* ==== Fakta dan Tips ==== */
 .facts-tips {
@@ -602,14 +623,123 @@ img {
 }
 
 /* ==== Footer ==== */
+/* ==== Footer ==== */
 footer {
-  background: linear-gradient(to right, #433878 0%, #524289 23%, #513857 100%);
-  color: #fff;
-  text-align: center;
-  padding: 150px 20px;
-  font-size: 14px;
+    background: linear-gradient(to right, #433878 0%, #524289 23%, #513857 100%);
+    color: #ffffff;
+    padding: 4rem 5%;
 }
 
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 10rem;
+    max-width: 3000px;
+}
+
+.footer-left {
+    flex: 2;
+    min-width: 300px;
+    margin-left: 5rem;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 1rem;
+}
+
+.logo-img {
+    height: 80px;
+}
+
+.footer-logo h2 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.footer-left p {
+    margin: 1rem 0 1.5rem 0;
+}
+
+.social-icons {
+    display: flex;
+    gap: 0.8rem;
+}
+
+.social-icons a {
+    color: #ffffff;
+    font-size: 1.8rem;
+    width: 50px;
+    height: 50px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.social-icons a:hover {
+    background-color: #ffffff;
+    color: #3a2d6b;
+    border-radius: 5px;
+}
+
+.footer-right {
+    flex: 1;
+    min-width: 250px;
+    margin-top: 1rem;
+}
+
+.footer-right h3 {
+    margin: 0 0 1.5rem 0;
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+
+.contact-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.contact-list li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.contact-list a {
+    color: #ffffff;
+    text-decoration: none;
+    transition: text-decoration 0.3s;
+}
+
+.contact-list a:hover {
+    text-decoration: underline;
+}
+
+.contact-icon {
+    height: 40px;
+    width: 40px;
+    margin-right: 12px;
+}
+
+/* ==== Desain Responsif untuk Layar Kecil ==== */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column; /* Mengubah tata letak menjadi vertikal */
+        align-items: flex-start; /* Meratakan semua ke kiri */
+    }
+
+    .footer-left, .footer-right {
+        width: 100%; /* Lebar penuh pada layar kecil */
+    }
+}
 /* ==== TRACKING ==== */
 .tracking-hero-img {
   max-width: 100%;
@@ -947,6 +1077,133 @@ footer {
   height: 100%;
   object-fit: contain;
 }
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(72, 62, 135, 0.2); /* ungu transparan */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.modal.hidden {
+  display: none;
+}
+.modal-content {
+  background: #fffaff;
+  padding: 2rem;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 600px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: 'Poppins', sans-serif;
+}
+
+.modal-content h3 {
+  margin-top: 0;
+  text-align: center;
+  color: #483e87;
+  font-weight: bold;
+  font-size: 1.7rem;
+  margin-bottom: 1rem;
+
+}
+
+.modal-content label {
+  display: inline-block;
+  font-weight: 550;
+  color: #3c3373;
+  margin-right: 1rem;
+  margin-top: 1rem;
+  font-size: 1.3rem;
+}
+
+.modal-content select {
+  background-color: #fef6fb;
+  border: 1px solid #e0dbe7;
+  border-radius: 8px;
+  padding: 0.4rem 0.6rem;
+  font-size: 1.1rem;
+  color: #000;
+  margin-right: 1rem;
+}
+
+.modal-content textarea {
+  background-color: #fff1fa;
+  width: 500px;
+  height: 150px;
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 18px;
+  border: none;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.95rem;
+  color: #483e87;
+  resize: none;
+}
+
+.anon-checkbox {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #483e87;
+}
+
+.anon-checkbox input[type="checkbox"] {
+  accent-color: #bfb8e0;
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.5rem;
+}
+
+.modal-button {
+  width: 120px; /* Atau gunakan min-width jika ingin fleksibel */
+  height: 40px;
+  padding: 0.6rem 1rem;
+  font-size: 0.9rem;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.modal-content button[type="submit"].modal-button {
+  background-color: #7e75c9;
+  color: white;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+}
+
+.modal-content button[type="submit"].modal-button:hover {
+  background-color: #6d64b3;
+}
+
+#close-modal.modal-button {
+  background: #ccc;
+  color: #333;
+}
+
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.badge.private {
+  background-color: #f44336;
+  color: white;
+  margin-left: 6px;
+  padding: 2px 6px;
+  border-radius: 8px;
+  font-size: 0.7rem;
+}
+
+
+
 
 /* ==== RESPONSIVE LAYOUT ==== */
 @media (max-width: 1024px) {
@@ -1866,3 +2123,4 @@ footer {
 .popup-error .close-btn {
   color: #c53727; /* Warna merah tua, sesuai warna teks */
 }
+

@@ -211,6 +211,23 @@ const Tracking = {
           localStorage.setItem(getUserKey('lastMoodTime'), Date.now().toString());
           updateMoodLog(lastMood);
           showPopup('Mood berhasil disimpan!');
+
+           const { data: moodsData, error: fetchError } = await supabase
+    .from('mood')
+    .select('*')
+    .eq('user_id', user.id);
+
+  if (!fetchError) {
+    const recentMoods = moodsData
+      .filter(entry => {
+        const entryDate = new Date(entry.date);
+        const diff = today - entryDate;
+        return diff >= 0 && diff <= 6 * 24 * 60 * 60 * 1000;
+      })
+      .map(entry => ({ date: entry.date.slice(5), mood: entry.mood }));
+
+    renderMoodChart(recentMoods); // 🔄 Update chart secara langsung
+  }
         } else {
           console.error('Gagal menyimpan mood:', error.message);
           alert('Gagal menyimpan mood!');

@@ -110,28 +110,30 @@ const Beranda = {
     const cardWidth = card?.offsetWidth || 590;
     const cardGap = 50;
     const scrollAmount = cardWidth + cardGap;
+if (scrollLeftBtn && scrollRightBtn) {
+  scrollLeftBtn.addEventListener('click', () => {
+    const currentScrollLeft = combinedContainer.scrollLeft;
 
-    scrollLeftBtn.addEventListener('click', () => {
-      const currentScrollLeft = combinedContainer.scrollLeft;
-
-      if (currentScrollLeft <= 5) {
-        const maxScrollLeft = combinedContainer.scrollWidth - combinedContainer.clientWidth;
-        combinedContainer.scrollTo({ left: maxScrollLeft, behavior: 'smooth' });
-      } else {
-        combinedContainer.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-      }
-    });
-
-    scrollRightBtn.addEventListener('click', () => {
+    if (currentScrollLeft <= 5) {
       const maxScrollLeft = combinedContainer.scrollWidth - combinedContainer.clientWidth;
-      const currentScrollLeft = combinedContainer.scrollLeft;
+      combinedContainer.scrollTo({ left: maxScrollLeft, behavior: 'smooth' });
+    } else {
+      combinedContainer.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+    }
+  });
 
-      if (currentScrollLeft >= maxScrollLeft - 5) {
-        combinedContainer.scrollTo({ left: 0, behavior: 'smooth' });
-      } else {
-        combinedContainer.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-      }
-    });
+  scrollRightBtn.addEventListener('click', () => {
+    const maxScrollLeft = combinedContainer.scrollWidth - combinedContainer.clientWidth;
+    const currentScrollLeft = combinedContainer.scrollLeft;
+
+    if (currentScrollLeft >= maxScrollLeft - 5) {
+      combinedContainer.scrollTo({ left: 0, behavior: 'smooth' });
+    } else {
+      combinedContainer.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+  });
+}
+
 
     // ========== Artikel ========== //
     const articleContainer = document.querySelector('#article-container');

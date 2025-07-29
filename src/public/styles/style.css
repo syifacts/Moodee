@@ -350,6 +350,80 @@ img {
   color: white;
 }
 
+.post-actions {
+  margin-top: 10px;
+  text-align: right;
+}
+
+.toggle-privacy-btn {
+  background-color: #eee;
+  color: #333;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.2s ease;
+}
+
+.toggle-privacy-btn:hover {
+  background-color: #ddd;
+}
+.like-button {
+  background: none;
+  border: none;
+  font: inherit;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+}
+
+.like-button img {
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  transition: transform 0.2s ease;
+}
+
+.like-button.liked img {
+  filter: drop-shadow(0 0 4px red);
+  transform: scale(1.2);
+  transition: all 0.2s ease;
+}
+.comment-button {
+  background: none;
+  border: none;
+  font: inherit;
+  cursor: pointer;
+  display: flex;
+  margin-left: -30px;
+}
+.comment-item {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.comment-item strong {
+  display: block;
+  color: #333;
+  font-weight: 600;
+}
+
+.comment-item small {
+  color: #999;
+  font-size: 12px;
+  margin-bottom: 4px;
+  display: block;
+}
+
+.comment-item p {
+  margin: 0;
+  color: #444;
+}
+
+
 
 /* ==== Fakta dan Tips ==== */
 .facts-tips {

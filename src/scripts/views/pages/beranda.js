@@ -177,25 +177,27 @@ const articleCardWidth = articleCard?.offsetWidth || 300;
 const articleCardGap = 32;
 const articleScrollAmount = articleCardWidth + articleCardGap;
 
-articleScrollLeftBtn.addEventListener('click', () => {
-  const currentScroll = articleContainerScroll.scrollLeft;
-  if (currentScroll <= 5) {
-    const maxScroll = articleContainerScroll.scrollWidth - articleContainerScroll.clientWidth;
-    articleContainerScroll.scrollTo({ left: maxScroll, behavior: 'smooth' });
-  } else {
-    articleContainerScroll.scrollBy({ left: -articleScrollAmount, behavior: 'smooth' });
-  }
-});
+if (articleScrollLeftBtn && articleScrollRightBtn && articleContainerScroll) {
+  articleScrollLeftBtn.addEventListener('click', () => {
+    const currentScroll = articleContainerScroll.scrollLeft;
+    if (currentScroll <= 5) {
+      const maxScroll = articleContainerScroll.scrollWidth - articleContainerScroll.clientWidth;
+      articleContainerScroll.scrollTo({ left: maxScroll, behavior: 'smooth' });
+    } else {
+      articleContainerScroll.scrollBy({ left: -articleScrollAmount, behavior: 'smooth' });
+    }
+  });
 
-articleScrollRightBtn.addEventListener('click', () => {
-  const maxScroll = articleContainerScroll.scrollWidth - articleContainerScroll.clientWidth;
-  const currentScroll = articleContainerScroll.scrollLeft;
-  if (currentScroll >= maxScroll - 5) {
-    articleContainerScroll.scrollTo({ left: 0, behavior: 'smooth' });
-  } else {
-    articleContainerScroll.scrollBy({ left: articleScrollAmount, behavior: 'smooth' });
-  }
-});
+  articleScrollRightBtn.addEventListener('click', () => {
+    const maxScroll = articleContainerScroll.scrollWidth - articleContainerScroll.clientWidth;
+    const currentScroll = articleContainerScroll.scrollLeft;
+    if (currentScroll >= maxScroll - 5) {
+      articleContainerScroll.scrollTo({ left: 0, behavior: 'smooth' });
+    } else {
+      articleContainerScroll.scrollBy({ left: articleScrollAmount, behavior: 'smooth' });
+    }
+  });
+}
 
   },
 };

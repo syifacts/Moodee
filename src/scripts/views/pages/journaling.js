@@ -221,20 +221,21 @@ const addLikeListeners = () => {
       const likeCountSpan = button.querySelector('span');
 
       // Cek apakah user sudah like
-      const { data: existingLikes, error: checkError } = await supabase
-        .from('journal_likes')
-        .select('*')
-        .eq('user_id', currentUser.id)
-        .eq('journal_id', postId)
-        .maybeSingle();
+   const { data: existingLikes, error: checkError } = await supabase
+  .from('journal_likes')
+  .select('*')
+  .eq('user_id', currentUser.id)
+  .eq('journal_id', postId)
+  .limit(1);  // ganti maybeSingle()
 
-      if (checkError) {
-        console.error('Gagal cek like:', checkError);
-        isProcessing = false;
-        return;
-      }
+if (checkError) {
+  console.error('Gagal cek like:', checkError);
+  isProcessing = false;
+  return;
+}
 
-      const alreadyLiked = !!existingLikes;
+const alreadyLiked = existingLikes.length > 0;
+
 
       // Ambil jumlah like saat ini
       const { data: postData, error: fetchError } = await supabase
@@ -275,14 +276,17 @@ const addLikeListeners = () => {
           .insert([{ user_id: currentUser.id, journal_id: postId }]);
 
         if (insertError) {
-          if (insertError.code === '23505') {
-            console.warn('Like sudah ada.');
-          } else {
-            console.error('Gagal menyimpan like:', insertError);
-            isProcessing = false;
-            return;
-          }
-        } else {
+  if (insertError.code === '23505') {
+    console.warn('Like sudah ada.');
+    isProcessing = false;
+    return;
+  } else {
+    console.error('Gagal menyimpan like:', insertError);
+    isProcessing = false;
+    return;
+  }
+}
+else {
           newLikes += 1;
           button.classList.add('liked');
           if (img) img.src = '/icons/favorite.png';

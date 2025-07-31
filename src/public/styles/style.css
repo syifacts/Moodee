@@ -354,6 +354,32 @@ img {
   margin-top: 10px;
   text-align: right;
 }
+.post-actions button {
+  padding: 6px 12px;
+  font-size: 0.9rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.post-actions .edit-post-btn {
+  background-color: #4caf50;
+  color: white;
+}
+
+.post-actions .edit-post-btn:hover {
+  background-color: #45a049;
+}
+
+.post-actions .delete-post-btn {
+  background-color: #f44336;
+  color: white;
+}
+
+.post-actions .delete-post-btn:hover {
+  background-color: #e53935;
+}
 
 .toggle-privacy-btn {
   background-color: #eee;
@@ -1233,24 +1259,24 @@ footer {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(72, 62, 135, 0.2); /* ungu transparan */
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 999;
 }
 
 .modal.hidden {
   display: none;
 }
 .modal-content {
-  background: #fffaff;
+  background: white;
   padding: 2rem;
-  border-radius: 20px;
-  width: 90%;
-  max-width: 600px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  font-family: 'Poppins', sans-serif;
+  border-radius: 8px;
+  text-align: center;
+}
+.modal-actions button {
+  margin: 0 1rem;
+  padding: 0.5rem 1rem;
 }
 
 .modal-content h3 {

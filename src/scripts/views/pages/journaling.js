@@ -70,6 +70,45 @@ const Journaling = {
     </form>
   </div>
 </div>
+<div id="edit-modal" class="modal hidden">
+  <div class="modal-content">
+    <h3>Edit Jurnal</h3>
+    <form id="edit-form">
+      <label>
+        Ubah ke:
+        <select name="visibility">
+          <option value="false">Public</option>
+          <option value="true">Private</option>
+        </select>
+      </label>
+      <label>
+        Mood:
+        <select name="mood">
+          <option value="Happy">Happy</option>
+          <option value="Good">Good</option>
+          <option value="Bad">Bad</option>
+          <option value="Sad">Sad</option>
+          <option value="Angry">Angry</option>
+        </select>
+      </label>
+      <textarea name="content" required></textarea>
+      <div class="button-group">
+        <button type="submit">Simpan</button>
+        <button type="button" id="close-edit-modal">Batal</button>
+      </div>
+    </form>
+  </div>
+</div>
+<div id="delete-modal" class="modal hidden">
+  <div class="modal-content">
+    <p>Apakah kamu yakin ingin menghapus jurnal ini?</p>
+    <div class="modal-actions">
+      <button id="cancel-delete">Batal</button>
+      <button id="confirm-delete">Hapus</button>
+    </div>
+  </div>
+</div>
+
 
     `;
   },
@@ -192,15 +231,97 @@ const renderPosts = (posts) => {
         </div>
 
         ${activeTab === 'mine' ? `
-          <div class="post-actions">
-            <button class="toggle-privacy-btn" data-id="${post.id}" data-private="${post.is_private}">
-              ${post.is_private ? 'Ubah ke Public' : 'Ubah ke Private'}
-            </button>
-          </div>
-        ` : ''}
+  <div class="post-actions">
+    <button class="edit-post-btn" data-id="${post.id}">Edit</button>
+    <button class="delete-post-btn" data-id="${post.id}">Delete</button>
+  </div>
+` : ''}
+
       </div>
     `;
   }).join('');
+};
+let postIdToDelete = null;
+
+const showDeleteModal = (postId) => {
+  postIdToDelete = postId;
+  document.getElementById('delete-modal').classList.remove('hidden');
+};
+
+const hideDeleteModal = () => {
+  postIdToDelete = null;
+  document.getElementById('delete-modal').classList.add('hidden');
+};
+
+const attachDeleteListeners = () => {
+  const deleteButtons = document.querySelectorAll('.delete-post-btn');
+  deleteButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const postId = button.dataset.id;
+      showDeleteModal(postId);
+    });
+  });
+};
+
+// Event listener untuk tombol di modal
+document.getElementById('cancel-delete').addEventListener('click', () => {
+  hideDeleteModal();
+});
+
+document.getElementById('confirm-delete').addEventListener('click', async () => {
+  if (!postIdToDelete) return;
+
+  const { error } = await supabase
+    .from('journal')
+    .delete()
+    .eq('id', postIdToDelete);
+
+  if (error) {
+    alert('Gagal menghapus jurnal.');
+    console.error(error);
+    return;
+  }
+
+  hideDeleteModal();
+
+  // Refresh postingan
+  const posts = await fetchMyPosts();
+  renderPosts(posts);
+  attachEditListeners();
+  attachDeleteListeners();
+  addLikeListeners();
+  attachCommentListeners();
+});
+
+
+// Buka modal edit saat tombol "Edit" diklik
+const attachEditListeners = () => {
+  const editButtons = document.querySelectorAll('.edit-post-btn');
+  editButtons.forEach(button => {
+    button.addEventListener('click', async () => {
+      const postId = button.dataset.id;
+      currentEditId = postId;
+
+      const { data: postData, error } = await supabase
+        .from('journal')
+        .select('*')
+        .eq('id', postId)
+        .single();
+
+      if (error || !postData) {
+        alert('Gagal mengambil data jurnal');
+        return;
+      }
+
+      // Isi form edit
+      editForm.elements['visibility'].value = postData.is_private ? 'true' : 'false';
+
+      editForm.elements['mood'].value = postData.mood;
+      editForm.elements['content'].value = postData.content;
+
+      editModal.classList.remove('hidden');
+    });
+  });
 };
 const attachCommentListeners = () => {
   const commentButtons = document.querySelectorAll('.comment-button');
@@ -354,6 +475,7 @@ else {
         addToggleListeners(); // ini penting!
         addLikeListeners();
         attachCommentListeners();
+        
       });
     });
   }, 0); // biarkan DOM selesai render
@@ -371,14 +493,18 @@ else {
           : await fetchMyPosts();
 
         renderPosts(posts);
-        if (btn.dataset.tab === 'mine') addToggleListeners();
+        if (btn.dataset.tab === 'mine') 
         addLikeListeners();
+       attachEditListeners();
         attachCommentListeners();
+         attachDeleteListeners();
       });
     });
 
     // Initial load (Trending)
     renderPosts(await fetchTrendingPosts());
+     attachEditListeners();
+      attachDeleteListeners();
     addLikeListeners();
 attachCommentListeners();
     // Modal handling
@@ -417,8 +543,9 @@ attachCommentListeners();
       const tab = document.querySelector('.tab-button.active')?.dataset.tab;
       const posts = tab === 'mine' ? await fetchMyPosts() : await fetchTrendingPosts();
       renderPosts(posts);
-      if (tab === 'mine') addToggleListeners();
+      if (tab === 'mine') 
       addLikeListeners();
+     attachEditListeners();
       attachCommentListeners();
     });
     const commentModal = document.getElementById('comment-modal');
@@ -455,13 +582,55 @@ const loadComments = async (postId) => {
   `).join('');
 };
 
+
 // Handle form kirim komentar
 
 closeCommentModal.addEventListener('click', () => {
   document.getElementById('comment-modal').classList.add('hidden');
 });
+const editModal = document.getElementById('edit-modal');
+const editForm = document.getElementById('edit-form');
+const closeEditModal = document.getElementById('close-edit-modal');
+let currentEditId = null;
+
+
+
+editForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const formData = new FormData(editForm);
+
+  const updates = {
+    is_private: formData.get('visibility') === 'true',
+    mood: formData.get('mood'),
+    content: formData.get('content'),
+  };
+
+  const { error } = await supabase
+    .from('journal')
+    .update(updates)
+    .eq('id', currentEditId);
+
+  if (error) {
+    alert('Gagal menyimpan perubahan');
+    return;
+  }
+
+  editModal.classList.add('hidden');
+  currentEditId = null;
+
+  const posts = await fetchMyPosts();
+  renderPosts(posts);
+  attachEditListeners();
+  addLikeListeners();
+  attachCommentListeners();
+});
+
+closeEditModal.addEventListener('click', () => {
+  editModal.classList.add('hidden');
+});
 
   }
+  
 
   }
 

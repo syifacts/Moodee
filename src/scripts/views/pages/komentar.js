@@ -50,7 +50,7 @@ const Komentar = {
         data_pengguna (username)
       `)
       .eq('journal_id', postId)
-      .order('created_at', { ascending: false });
+      .order('created_at', { ascending: true });
 
     const backButton = document.createElement('button');
     backButton.textContent = '← Kembali';

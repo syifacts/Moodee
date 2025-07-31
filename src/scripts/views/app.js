@@ -70,17 +70,22 @@ class App {
   }
 
   async renderPage() {
+    const komentarPage = document.querySelector('#komentar-page');
+if (komentarPage) komentarPage.remove();
     const url = UrlParser.parseActiveUrlWithCombiner();
     const page = routes[url] || routes['/404'];
 
-    const protectedRoutes = ['/account', '/tracking', '/journaling'];
+    const protectedRoutes = ['/account', '/tracking', '/journaling', '/komentar{id}'];
     if (protectedRoutes.includes(url) && !this._isLoggedIn()) {
       this._redirectToLogin();
       return;
     }
 
-    this._content.innerHTML = await page.render();
-    await page.afterRender();
+    const { id } = UrlParser.parseActiveUrlWithoutCombiner();
+     this._content.innerHTML = '';
+this._content.innerHTML = await page.render(id);
+await page.afterRender(id);
+
     checkSessionTimeout();
 
 // Perbarui waktu jika ada aktivitas

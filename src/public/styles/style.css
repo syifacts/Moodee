@@ -381,8 +381,8 @@ img {
 }
 
 .like-button img {
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
   vertical-align: middle;
   transition: transform 0.2s ease;
 }
@@ -403,6 +403,8 @@ img {
 .comment-item {
   padding: 10px;
   border-bottom: 1px solid #eee;
+  position: relative;
+  padding-bottom: 2.5px;
 }
 
 .comment-item strong {
@@ -421,9 +423,14 @@ img {
 .comment-item p {
   margin: 0;
   color: #444;
+  font-size: 1.3rem;
+  margin-left: 5px;
 }
 
-
+.icon-text img {
+  width: 30px;
+  height: 30px;
+}
 
 /* ==== Fakta dan Tips ==== */
 .facts-tips {
@@ -1064,6 +1071,7 @@ footer {
   margin: 20px auto;
   font-family: sans-serif;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
 }
 
 .postingan-header {
@@ -1177,18 +1185,21 @@ footer {
 
 
 .postingan-content {
-  font-size: 1.1rem;
+  font-size: 1.3rem;
   color: #333;
-  margin-bottom: 1rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  margin-left: 10px;
   line-height: 1.5;
 }
 
 .postingan-footer {
   display: flex;
-  gap: 2rem;
+  gap: 50px;
   color: #333;
   font-size: 1rem;
   font-weight: 500;
+
 }
 
 .icon-text {
@@ -2263,3 +2274,254 @@ footer {
   color: #c53727; /* Warna merah tua, sesuai warna teks */
 }
 
+/* KOMENTAR JOURNALING */
+.komentar-page {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 1rem;
+  font-family: 'Poppins', sans-serif;
+  background-color: #fff;
+}
+
+.post-detail {
+  background-color: #fceeff;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  margin-bottom: 2rem;
+  width: 900px;
+  margin-left: -120px;
+}
+
+.post-detail h2 {
+  color: #5f3dc4;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.post-detail p {
+  color: #333;
+  font-size: 1.3rem;
+  line-height: 1.5;
+}
+
+.comment-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.comment-item {
+  background-color: #fceeff;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.comment-item strong {
+  display: block;
+  font-weight: 600;
+  color: #5f3dc4;
+  margin-bottom: 0.25rem;
+}
+
+
+/* Judul komentar */
+.comment-list::before {
+  content: "Komentar";
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  display: block;
+  color: #5f3dc4;
+}
+
+/* Formulir Komentar */
+.comment-form {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background-color: transparent;
+}
+
+.comment-form textarea {
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 12px;
+  background-color: #fceeff;
+  font-size: 0.95rem;
+  resize: none;
+  color: #333;
+  font-family: 'Poppins', sans-serif;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.comment-form textarea::placeholder {
+  color: #999;
+}
+
+.comment-form label {
+  font-size: 0.9rem;
+  color: #5f3dc4;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.comment-form input[type="checkbox"] {
+  accent-color: #5f3dc4;
+  width: 16px;
+  height: 16px;
+}
+
+.comment-form button {
+  background-color: rgba(72, 62, 135, 0.7);
+  border: none;
+  border-radius: 999px;
+  padding: 0.6rem 2rem;
+  font-size: 1rem;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  align-self: flex-start;
+  box-shadow: 0 4px 10px rgba(143, 123, 255, 0.2);
+  transition: transform 0.2s ease;
+}
+
+.comment-form button:hover {
+  transform: scale(1.03);
+}
+
+/* Error handling */
+.error {
+  color: red;
+  background-color: #ffe6e6;
+  padding: 1rem;
+  border-radius: 12px;
+  font-weight: 500;
+}
+.back-button {
+  background-color: #d4c2f0;
+  color: #4b0082;
+  border: none;
+  padding: 10px 16px;
+  margin-bottom: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+  margin-top: 50px;
+}
+
+.back-button:hover {
+  background-color: #bba6e5;
+}
+.post-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.post-user, .comment-user {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.user-icon-journal {
+  font-size: 1.8rem;
+  color: #5f3dc4;
+}
+
+.user-info-journal {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-info-journal strong {
+  font-size: 1.1rem;
+  color: #5e4c87;
+
+}
+
+.user-info-journal span {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.mood-badge {
+  padding: 0.3rem 0.8rem;
+  background-color: #ffcccc;
+  color: #ffff;
+  font-weight: bold;
+  font-size: 0.75rem;
+  border-radius: 999px;
+}
+.anon-checkbox {
+  margin: 8px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.post-interactions {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  margin-top: 12px;
+  padding-top: 8px;
+  font-size: 16px;
+}
+
+.post-interactions .icon-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  color: #555;
+  transition: color 0.2s ease;
+  border: none;
+  background: none;
+  padding: 0;
+}
+
+.post-interactions .icon-text img {
+  width: 30px;
+  height: 30px;
+  vertical-align: middle;
+}
+
+.post-interactions .like-button.liked {
+  color: #e74c3c;
+}
+
+.post-interactions .like-button.liked img {
+  filter: drop-shadow(0 0 4px #f55);
+}
+
+.post-interactions .icon-text:hover {
+  color: #222;
+}
+/* Tombol delete-comment */
+.delete-comment {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  background: #e74c3c;
+  border: 1px solid #e74c3c;
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.85rem;
+  font-family: 'Poppins', sans-serif;
+  padding: 5px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.delete-comment:hover {
+  background-color: #e74c3c;
+  color: #fff;
+}

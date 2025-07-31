@@ -1,6 +1,7 @@
 import Account from "../views/pages/account";
 import Beranda from "../views/pages/beranda";
 import Journaling from "../views/pages/journaling";
+import Komentar from "../views/pages/komentar";
 import Login from "../views/pages/login";
 import Register from "../views/pages/register";
 import Tracking from "../views/pages/tracking";
@@ -13,7 +14,8 @@ const routes = {
     '/journaling' : Journaling,
     '/account': Account,
     '/login': Login,
-    '/register': Register
+    '/register': Register,
+    '/komentar/:id' : Komentar
 };
 
 export default routes;

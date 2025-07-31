@@ -1,4 +1,6 @@
 import { supabase } from '../../config/supabaseClient.js';
+import Komentar from './komentar.js';
+
 
 const Journaling = {
   async render() {
@@ -158,11 +160,17 @@ const renderPosts = (posts) => {
                 <span class="username">${post.username}</span>
                 ${post.is_private ? '<span class="badge private">Private</span>' : ''}
               </div>
-              <span class="date">${new Date(post.created_at).toLocaleDateString('id-ID', {
-                day: '2-digit',
-                month: 'short',
-                year: 'numeric'
-              })}</span>
+              <span class="date">${
+  new Date(new Date(post.created_at).getTime() + 7 * 60 * 60 * 1000)
+    .toLocaleString('id-ID', {
+      day: '2-digit',
+      month: 'short',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    })
+}</span>
+
             </div>
           </div>
           <div class="badge-wrapper">
@@ -173,11 +181,11 @@ const renderPosts = (posts) => {
         <div class="postingan-content">${post.content || '(tidak ada konten)'}</div>
         <div class="postingan-footer">
           <button type="button" class="icon-text like-button ${likeClass}" data-id="${post.id}">
-            <img src="${likeIcon}" alt="Like Icon" style="width: 20px; vertical-align: middle;" />
+            <img src="${likeIcon}" alt="Like Icon" style="vertical-align: middle;" />
             <span>${post.likes || 0}</span>
           </button>
           <button type="button" class="icon-text comment-button">
-  <img src="/icons/comment.png" alt="Comment Icon" style="width: 20px; vertical-align: middle;" />
+  <img src="/icons/comment.png" alt="Comment Icon" style="vertical-align: middle;" />
   <span>${post.comment_count || 0}</span>
 </button>
 
@@ -197,9 +205,13 @@ const renderPosts = (posts) => {
 const attachCommentListeners = () => {
   const commentButtons = document.querySelectorAll('.comment-button');
   commentButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
+    btn.addEventListener('click', async () => {
       const postId = btn.closest('.postingan')?.dataset.id;
-      openCommentModal(postId);
+      if (!postId) return;
+       window.location.hash = `/komentar/${postId}`;
+
+      // Navigasi ke route komentar, bisa dengan fungsi show pada Komentar
+      await Komentar.show(postId, currentUser);
     });
   });
 };
@@ -444,58 +456,14 @@ const loadComments = async (postId) => {
 };
 
 // Handle form kirim komentar
-commentForm.addEventListener('submit', async (e) => {
-  e.preventDefault();
-  if (!currentPostId) return;
-
-  const formData = new FormData(commentForm);
-  const isAnon = formData.get('is_anon') === 'on';
-  const content = formData.get('content');
-
-  const { error } = await supabase.from('journal_comments').insert([{
-    journal_id: currentPostId,
-    username: isAnon ? 'anonim' : currentUser?.username || 'User',
-    content,
-    created_at: new Date().toISOString(),
-  }]);
-
-  if (error) {
-    console.error('Gagal mengirim komentar:', error);
-    alert('Gagal mengirim komentar.');
-    return;
-  }
-
-  commentForm.reset();
-  await loadComments(currentPostId);
-
-  // Update jumlah komentar di UI dan DB
-  const { data: post, error: postError } = await supabase
-    .from('journal')
-    .select('comment_count')
-    .eq('id', currentPostId)
-    .single();
-
-  if (!postError) {
-    await supabase
-      .from('journal')
-      .update({ comment_count: (post.comment_count || 0) + 1 })
-      .eq('id', currentPostId);
-
-    // Refresh post list (optional)
-    const tab = document.querySelector('.tab-button.active')?.dataset.tab;
-    const posts = tab === 'mine' ? await fetchMyPosts() : await fetchTrendingPosts();
-    renderPosts(posts);
-    if (tab === 'mine') addToggleListeners();
-    addLikeListeners();
-    attachCommentListeners(); // penting agar tombol komentar tetap aktif
-  }
-});
 
 closeCommentModal.addEventListener('click', () => {
-  commentModal.classList.add('hidden');
+  document.getElementById('comment-modal').classList.add('hidden');
 });
 
   }
-};
+
+  }
+
 
 export default Journaling;
